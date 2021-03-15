@@ -1,0 +1,160 @@
+// Button component:
+
+.btn {
+    &-modal{
+        height: fit-content;
+    }
+    &-o{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: $px;
+        font-size: abs($px * 2);
+        font-family: $font;
+        font-weight: 500;
+        padding: abs($px * 2) abs($px * 3);
+        border: none;
+        margin: $px;
+        cursor: pointer;
+        transition: 0.3s;
+        &:focus {
+            outline: none;
+        }
+        &[disabled] {
+            cursor: not-allowed;
+            background-color: $lightblue;
+            color: $darkblue;
+        }
+        &-full {
+            width: 100%;
+        } 
+        &-regular {
+            border: 1px solid $main;
+            background-color: transparent;
+            color: $main;
+            &:hover {
+                background-color: darken($main, 5%);
+                color: $white;
+            }
+            &:active {
+            background-color: $main;
+            background-color: darken($main, 10%);
+            }
+        }
+    }
+    &-show{
+        background: transparent;
+        border:none; 
+        position: absolute;
+        right: 30px; 
+        top: 18px;
+        &:focus{
+            outline: none;
+        }
+    }
+    &-sector {
+        &--center {
+            display: flex;
+            justify-content: center;
+            margin: abs($px * 3) 0px;
+        }
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $px;
+    font-size: abs($px * 2);
+    font-family: $font;
+    font-weight: 500;
+    padding: abs($px * 2) abs($px * 3);
+    border: none;
+    margin: $px;
+        // height: fit-content;
+        cursor: pointer;
+    transition: 0.3s;
+    &:focus {
+        outline: none;
+    }
+    &[disabled] {
+        cursor: not-allowed;
+        background-color: transparentize($main, .5);
+        color: $white;
+        &:hover{
+            cursor: not-allowed;
+        background-color: transparentize($main, .5);
+        color: $white;
+        }
+    }
+    &-full {
+        width: 100%;
+    }
+    &-brand {
+        background: $orange_gd;
+        color: $dark;
+        box-shadow: $orange_shadow;
+        &:hover {
+            background: $orange_gd_reversed;
+        }
+    }
+    &-regular {
+        background-color: $main;
+        color: $white;
+        &:hover {
+            background-color: darken($main, 5%);
+        }
+        &:active {
+            background-color: darken($main, 10%);
+        }
+    }
+    &-flat {
+        background-color: $white;
+        color: $main;
+        text-decoration: underline;
+        &:hover {
+            color: darken($main, 5%);
+        }
+        &:active {
+            color: darken($main, 10%);
+        }
+    }
+    &-warning {
+    }
+    &-danger {
+    }
+}
+
+.c-btn {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    border-radius: 60px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: transparent;
+    border: 1px solid $white;
+    &-wrapper {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $white;
+        box-shadow: $regular-shadow;
+        border-radius: 30px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        &-ic {
+            width: 24px;
+            height: 24px;
+            margin: 0px;
+            // margin-left: 25px;
+            display: flex;
+            align-items: center;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            position: relative;
+        }
+    }
+}

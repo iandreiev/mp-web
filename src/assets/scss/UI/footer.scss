@@ -1,0 +1,85 @@
+.footer{
+    // position: absolute;
+    // bottom: 0;
+    width: 100%;
+    padding: abs($px*3) 0px;
+    background: $lightblue;
+    margin-top: abs($px*8);
+    .list-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo-wrapper{
+        display: flex;
+        align-items: center;
+    }
+    .copyright-wrapper{
+        display: flex;
+        justify-content: center;
+        margin-top: abs($px*2);
+        align-items: center;
+    }
+    .rro-logo{
+        background: $rro;
+        width: 40px;
+        height: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    &-list{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        list-style: none;
+        li{
+            margin: 0px abs($px*2); 
+            color: $darkblue;
+        }
+    }
+    &-item{
+        .phones{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            margin: abs($px*2) 0px;
+            color: $darkblue;
+            p{
+                margin-bottom: $px;
+            }
+        }
+    }
+    &-row{
+        display: flex;
+        justify-content: space-between;
+    }
+    &-logo{
+        background-image: $logo_muted;
+        width: 90px;
+        height: 90px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+}
+
+@media screen and (min-width:360px) and (max-width: 767px){
+    .footer{
+        .row{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        &-list{
+            display: flex;
+            flex-direction: column;
+            li{
+                margin: abs($px*2) 0px;
+            }
+        }
+    }
+}

@@ -1,0 +1,150 @@
+// Modal
+
+.modal{
+    position: relative;
+    width: min-content;
+    padding: abs($px*2);
+    border-radius: $px;
+    background: $white;
+    box-shadow:-4px 4px 15px rgba(49, 69, 106, 0.2), 1px 1px 25px rgba(136, 165, 191, 0.15);
+    transition: opacity 0.3s ease;
+    z-index: 999;
+    &-overlay{
+        position: fixed;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: transparentize($darkblue, .5);
+        // filter: blur($px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    z-index: 999;
+
+    }
+    &-head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+    &-box{
+        width: 40px;
+        height: 40px;
+        background: $white;
+    }
+    &-logo{
+        background-image: $logo_reg;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 155px;
+        height: 50px;
+        &--muted{
+            background-image: $logo_reg_muted;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 155px;
+            height: 50px;
+            margin-top: 20px;
+        }
+    }
+    &-close-wrapper{
+        width: 40px;
+        height: 40px;
+        background: $lightblue;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover{
+            background-color: $main;
+            transition: .3s;
+        }
+        .ic-close{
+            input[type=checkbox]{
+                display: none;
+            }
+
+            .line{
+                width: 24px;
+                height: 2px;
+                border-radius: 2px;
+                background-color: $white;
+                transition: .3s;
+                &--1{
+                    transform: rotate(-45deg);
+                }
+                &--2{
+                    transform: rotate(45deg) translate(-1px, -2px);
+                }
+            }
+        }
+    }
+    
+    &-body{
+        display: flex;
+        justify-content: center;
+        margin: abs($px*2) 0px;
+    }
+    &-footer{
+        &-center{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
+        &-space-between{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+}
+
+.modal-enter {
+    opacity: 0;
+  }
+  
+  .modal-leave-active {
+    opacity: 0;
+  }
+  
+  .modal-enter .modal-container,
+  .modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  .mail-sent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 360px;
+  }
+
+  @media screen and (min-width:360px) and (max-width: 767px){
+      .modal{
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: scroll;
+        padding: abs($px*2);
+        border-radius: $px;
+        background: $white;
+        box-shadow:-4px 4px 15px rgba(49, 69, 106, 0.2), 1px 1px 25px rgba(136, 165, 191, 0.15);
+        transition: opacity 0.3s ease;
+        z-index: 999;
+        &-body{
+            display: flex;
+            flex-direction: column;
+        }
+      }
+  }

@@ -1,0 +1,83 @@
+// Tile - it is a component which contains title and information.
+
+.tile {
+    &-item {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: abs($px*6);
+        &-head {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: abs(($px*2)+2); //20px
+        }
+        &-body {
+
+        }
+        &-footer {
+        }
+    }
+}
+
+.mini-tile{
+    &-title{
+        font-size: abs($px*2);
+        margin-bottom: abs($px);
+        text-transform: none;
+
+    }
+    &-item{
+        margin: abs($px*6) 0px;
+        &-head{
+
+        }
+        &-body{
+            p{
+                margin: $px 0px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width:360px) and (max-width: 767px){
+    .tile {
+        &-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: abs($px*6);
+            padding: $px;
+            &-head {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: abs(($px*2)+2); //20px
+            }
+            &-body {
+    
+            }
+            &-footer {
+            }
+        }
+    }
+    
+    .mini-tile{
+        &-title{
+            font-size: abs($px*2);
+            margin-bottom: 0px;
+            text-transform: none;
+            padding: $px;
+        }
+        &-item{
+            margin: abs($px*3) 0px;
+            &-head{
+                h2{
+
+                }
+            }
+            &-body{
+                p,h2{
+                    margin: 0px;
+                    padding: $px;
+                }
+            }
+        }
+    }
+}

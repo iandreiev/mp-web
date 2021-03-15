@@ -1,0 +1,80 @@
+.ic{
+    &-row{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: abs($px*2);
+        cursor: pointer;
+        .back-text{
+            margin-left: $px;
+        }
+    }
+    &-hidden{
+        background-image: $hidden;
+        width: 18px;
+        height: 18px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    &_dropdown{
+        background-image:$dropdown;
+        width: 11px;
+        height: 6px;
+    }
+    &_search{
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: $search;
+        width: abs($px*2);
+        height: abs($px*2);
+    }
+    &_play{
+        background-image: $play;
+    }
+    &_mail{
+        background-image: $envelope;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: abs($px*8);
+        height: abs($px*8);
+    }
+    &-show{
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: $search;
+        width: abs($px*2);
+        height: abs($px*2);
+        background-image: $show-pass;
+    }
+    &-arr-back{
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: $search;
+        width: abs($px*2);
+        height: abs($px*2);
+        background-image: $back;
+    }
+}
+
+// Самопальные иконки
+
+.arrow {
+    box-sizing: border-box;
+    height: abs($px*2);
+    width: abs($px*2);
+    border-style: solid;
+    border-color: $darkblue;
+    border-width: 0px 4px 4px 0px;
+    transform: rotate(45deg);
+    transition: border-width 150ms ease-in-out;
+    &-up{
+    transform: rotate(-135deg);
+    border-color: $main;
+    }
+  }
+  
+

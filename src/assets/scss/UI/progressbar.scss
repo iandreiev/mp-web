@@ -1,0 +1,17 @@
+//Progressbar component
+
+.progressbar{
+    height: abs($px);
+    position: relative;
+    background: $white;
+    border-radius: abs($px*2);
+    &-line{
+        display: block;
+        height: 100%;
+        border-radius: abs($px*2);
+        background-image: $orange_gd;
+        overflow: hidden;
+        position: relative;
+        transition: .3s;
+    }
+}

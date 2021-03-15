@@ -1,0 +1,102 @@
+.tabs{
+    margin-bottom: abs($px*2);
+    &-nav{
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        li.tab{
+            margin-right: abs($px*5);
+            margin-left: $px;
+            transition: .5s ease-out;
+            display: flex;
+            flex-direction: column;
+            &:after{
+                content: '';
+                height: 2px;
+                width: inherit;
+                margin-top: 4px;
+                background: transparent;
+            }
+            
+            a{
+                font-size: abs($px*2);
+                font-weight: 500;
+            }
+            &-active{
+                a{
+                    color: $dark;
+                    font-size: abs($px*2);
+                font-weight: 500;
+
+                }
+                &:after{
+                    content: '';
+                    height: 2px;
+                    width: inherit;
+                    background: $main;
+                    transition: .3s linear;
+                }
+
+            }
+        }
+    }
+    &-details{
+
+    }
+}
+
+.tab{
+    &-wrapper{
+        margin-left: abs($px*3);
+    }
+}
+
+#tab-balance{
+    margin-top: 12%;
+}
+
+#tab-withdraw{
+    margin-top: 6%;
+    .withdraw-section{
+        .meta-balance{
+            h3{
+                margin-left: $px;
+            }
+        }
+    }
+}
+
+#tab-personal{
+    margin-top: 6%;
+    .col-8{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+//TODO: Make balance margin-left: $px;
+
+@media screen and (min-width:360px) and (max-width: 767px){
+    .tabs{
+        padding: $px;
+        display: flex;
+        justify-content: center;
+        &-nav{
+            li.tab{
+                margin-right: 0px;
+            margin-left: 0px;
+            margin: $px;
+            display: flex;
+            justify-content: center;
+            }
+        }
+    }
+
+    #tab-balance{
+        margin-top: 6%;
+    }
+
+    #tab-withdraw{
+        margin-top: 6%;
+    }
+}

@@ -1,0 +1,100 @@
+.card{
+    .progressbar{
+        margin-top: abs($px*4);
+        margin-bottom: abs($px*2);
+    }
+    &-regular{
+        background: $main;
+        padding: abs($px*2) 0px abs($px*2) 0px;
+        border-radius: abs($px*2);
+        box-shadow: $blue_shadow;
+        color: $white;
+        h2{
+            color: $white;
+        }
+    }
+    &-light{
+        background: $lightblue;
+        padding: abs($px*2) 0px abs($px*2) 0px;
+        border-radius: abs($px*2);
+        color: $darkblue;
+        transition: .3s;
+        h2{
+            color: $darkblue;
+            transition: .3s;
+        }
+        .ic_location{
+            margin-right: $px;
+        }
+        .ic_mnp{
+            margin-left: $px;
+        }
+        &:hover{
+            background: $main;
+            padding: abs($px*2) 0px abs($px*2) 0px;
+            border-radius: abs($px*2);
+            box-shadow: $blue_shadow;
+            color: $white;
+            h2{
+                color: $white;
+            }
+            .ic_mnp, .ic_location{
+                &:before{
+                    color: $white;
+                    transition: .3s;
+                }
+            }
+        }
+
+    }
+    &-container{
+        padding:  0px abs($px*3);
+        margin: abs($px) 0px;
+    }
+    &-meta{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    &-image{
+        width: 100%;
+        height: auto;
+        padding-left: abs($px*3);
+        border-top-left-radius: abs($px*2);
+        border-bottom-left-radius: abs($px*2);
+    }
+    &-business{
+        &-meta{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            &-item{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+@media screen and (min-width:360px) and (max-width: 767px){
+    .card{
+        &-light{
+            margin: $px;
+            
+        }
+        &-business{
+            &-meta{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                &-item{
+                    display: flex;
+                    flex-direction: column;
+                    p{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}

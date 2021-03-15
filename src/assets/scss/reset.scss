@@ -1,0 +1,33 @@
+html,body{
+    font-family: $font;
+    background: $bg;
+}
+
+::-webkit-scrollbar{
+    width: $px;
+    &-track{
+        background-color: $bg;
+    }
+    &-thumb{
+        background-color: $main;
+    }
+}
+
+
+@media screen and (min-width:360px) and (max-width: 767px){
+    ::-webkit-scrollbar{
+        width: $px;
+        display: none;
+        &-track{
+            background-color: $bg;
+        }
+        &-thumb{
+            background-color: $main;
+        }
+    }
+
+    .col-6{
+        width: 100%!important;
+    }
+
+}

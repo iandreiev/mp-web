@@ -1,0 +1,117 @@
+// Colors
+$main: #144EF4;
+$darkblue: #6A8FB1;
+$lightblue: #E2EDF3;
+$light:#F9FDFF;
+$lightblue-2: #e2e4f9;
+
+$bg: #F9FDFF;
+
+$orange: #FFB93E;
+
+$orange_gd: linear-gradient(126.11deg, #FB6322 -28.41%, #FFB800 93.02%);
+$orange_gd_reversed: linear-gradient(270.02deg, #F2994A -6.09%, #F2E14A 101.8%);
+
+
+$orange_shadow: 0px 8px 40px rgba(255, 183, 0, 0.65);
+$regular-shadow: 0px 8px 40px transparentize($main, .2);
+$blue_shadow: 0px 0px 50px rgba(37, 84, 109, 0.3);
+
+$dark: #1D2942;
+$light: #E5E5E5;
+
+$black: #000000;
+$white: #ffffff;
+
+$grey: #828282;
+$grey_1: #E2EDF3;
+
+$green: #77dd77;
+
+$danger: #ff0000;
+
+$card_bg: #EBF3FA;
+
+// Measurements
+$px: 8px;
+
+// Texts
+$font: 'Montserrat', sans-serif;
+
+$h1: 2em;
+$h2: 1.5em;
+$h3: 1.17em;
+$h4: 1em;
+$h5: .83em;
+$h6: .67em;
+
+// Grid variables
+$grid-columns: 12;
+$grid-max-width: 80em;
+ 
+ 
+// breakpoints
+$breakpoint-small: "only screen and (min-width: 20em)";
+$breakpoint-medium: "only screen and (min-width: 30em)";
+
+
+//Images
+
+$logo: url(../img/logo.svg);
+$logo-reg:url(../img/logo_reg.svg);
+$logo_muted: url(../img/logo_muted.svg);
+$logo_reg_muted: url(../img/logo_reg_muted.svg);
+$logo_blend: url(../img/logo_bend.svg);
+$logo_white: url(../img/logo_white.svg);
+$logo_loader: url(../img/preloader.svg);
+
+
+$dropdown: url(../img/dropdown.svg);
+$search: url(../img/search.svg);
+$play: url(../img/play.svg);
+$show-pass: url(../img/pass-show.svg);
+$selectFile: url(../img/icons/selectfile.svg);
+$back: url(../img/arrow_back.svg);
+$rro: url(../img/rro.svg);
+$hidden: url(../img/ic_hidden.svg);
+
+$pacman_1: url(../img/pacman.svg);
+$pacman_2: url(../img/pacman_2.svg);
+$pacman_3: url(../img/pacman_3.svg);
+$envelope: url(../img/envelope.svg);
+$man-error: url(../img/404-man.svg);
+$device-error: url(../img/404-devce.svg);
+$location-error: url(../img/404-locations.svg);
+$bg-error: url(../img/404-bg.svg);
+
+
+// icons
+
+$icomoon-font-family: "monopoly" !default;
+$icomoon-font-path: "fonts" !default;
+
+$ic_next: "\e900";
+$ic_prev: "\e901";
+$ic_bid: "\e902";
+$ic_btc: "\e903";
+$ic_chat: "\e904";
+$ic_check: "\e905";
+$ic_danger: "\e906";
+$ic_fund: "\e907";
+$ic_hide: "\e908";
+$ic_incoming: "\e909";
+$ic_logout: "\e90a";
+$ic_media: "\e90b";
+$ic_mnp: "\e90c";
+$ic_projects: "\e90d";
+$ic_settings: "\e90e";
+$ic_show: "\e90f";
+$ic_total_return: "\e910";
+$ic_total_share: "\e911";
+$ic_wallet: "\e912";
+$ic_add: "\e913";
+$ic_affilate: "\e914";
+$ic_arrow_down: "\e915";
+
+//MQ
+

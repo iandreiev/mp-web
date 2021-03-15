@@ -1,0 +1,42 @@
+.table{
+    width: 100%;
+    display: table;
+    transition: .3s;
+    // border-collapse: collapse;
+    border-collapse:separate; 
+  border-spacing: 0 .5em;
+    th{
+        font-size: abs($px*2);
+        font-weight: 500;
+    }
+    tbody{
+        margin-top: abs($px*2);
+    }
+    tr{
+        text-align: center;
+    transition: .3s;
+    background-color: $card_bg;
+    border-bottom: 1px solid $main;
+    cursor: pointer;
+        &:hover{
+            background-color: $main;
+            color: $white;
+    transition: .3s;
+    border-collapse: none;
+        }
+    }
+    td{
+        padding: abs($px*2);
+        border: none;
+        border-collapse: unset;
+        border-bottom: 1px solid $lightblue;
+        &:first-child{
+            border-top-left-radius: $px;
+            border-bottom-left-radius: $px;
+        }
+        &:last-child{
+            border-top-right-radius: $px;
+            border-bottom-right-radius: $px;
+        }  
+    }
+}

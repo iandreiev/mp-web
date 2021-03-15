@@ -1,0 +1,115 @@
+.error-page{
+    display: flex;
+    height: 100vh!important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: $bg-error;
+
+    .error-man{
+        background-image: $man-error;  
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        width: 480px;
+        height: abs(788px/2);
+        position: absolute;
+        bottom: 0px;
+        right: 20px;
+      }
+      .error-device{
+        background-image: $device-error;  
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        width: 40%;
+        height: 365px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+      }
+      .error-locations{
+        background-image: $location-error;  
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        width: 31%;
+        height: 365px;
+        position: absolute;
+        bottom: 155px;
+        left: 0px;
+      }
+    &-btn-wrapper{
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        z-index: 999;
+
+    }
+    h1{
+        font-size: 6em;
+        z-index: 999;
+    }
+    
+}
+
+@media screen and (min-width: 360px) and (max-width:767px){
+    .error-page{
+        display: flex;
+        height: 100vh!important;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-image: $bg-error;
+    
+        .error-man{
+            background-image: $man-error;  
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 480px;
+            height: abs(788px/2);
+            position: absolute;
+            bottom: -120px;
+            right: 0px;
+          }
+          .error-device{
+            background-image: $device-error;  
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 40%;
+            height: 365px;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            display: none
+          }
+          .error-locations{
+            background-image: $location-error;  
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 31%;
+            height: 365px;
+            position: absolute;
+            bottom: 155px;
+            left: 0px;
+            display: none;
+          }
+        &-btn-wrapper{
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            z-index: 999;
+    
+        }
+        h1{
+            font-size: 4em;
+            z-index: 999;
+            text-align: center;
+            margin-top: 40%;
+        }
+        
+    }
+}

@@ -1,0 +1,876 @@
+// Form components. form, input, textarea
+
+.form{
+  &-title{
+    text-align: center;
+    margin: 20px 0px;
+  }
+
+    &-controller{
+        position: relative;
+        flex-direction: column;
+        width: -webkit-fill-available;
+        // width: 100%;
+        &-row{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .input-percent{
+            width: 20%;
+          }
+          .input-summ{
+            width: 30%;
+          }
+        }
+       
+        
+       .ic{
+         &-wrapper{
+        background: transparent;
+        border:none; 
+        position: absolute;
+        right: 30px; 
+        top: 18px;
+         }
+         &_percent{
+           &:before{
+            content: " %";
+            font-size: 18px;
+            font-weight: 600;
+            color: $darkblue;
+            font-family: $font;
+           }
+         }
+       }
+        
+        label{
+            font-size: abs($px*2);
+            color: $darkblue;
+            margin-left: $px;
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            margin: 18px 0;
+            width: 100%;
+          }
+          input[type=range]:focus {
+            outline: none;
+          }
+          input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            
+            cursor: pointer;
+            animate: 0.2s;
+            background: $main;
+            border-radius: 12px;
+          }
+          input[type=range]::-webkit-slider-thumb {
+            height: 12px;
+            width: 12px;
+            border-radius: 12px;
+            background: $white;
+            border: 1px solid $main;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -6px;
+          }
+          input[type=range]:focus::-webkit-slider-runnable-track {
+            background: $main;
+          }
+          input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            animate: 0.2s;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            background: #3071a9;
+            border-radius: 1.3px;
+            border: 0.2px solid #010101;
+          }
+          input[type=range]::-moz-range-thumb {
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            border: 1px solid #000000;
+            height: 36px;
+            width: 16px;
+            border-radius: 3px;
+            background: #ffffff;
+            cursor: pointer;
+          }
+          input[type=range]::-ms-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            animate: 0.2s;
+            background: transparent;
+            border-color: transparent;
+            border-width: 16px 0;
+            color: transparent;
+          }
+          input[type=range]::-ms-fill-lower {
+            background: #2a6495;
+            border: 0.2px solid #010101;
+            border-radius: 2.6px;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+          }
+          input[type=range]::-ms-fill-upper {
+            background: #3071a9;
+            border: 0.2px solid #010101;
+            border-radius: 2.6px;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+          }
+          input[type=range]::-ms-thumb {
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            border: 1px solid #000000;
+            height: 36px;
+            width: 16px;
+            border-radius: 3px;
+            background: #ffffff;
+            cursor: pointer;
+          }
+          input[type=range]:focus::-ms-fill-lower {
+            background: #3071a9;
+          }
+          input[type=range]:focus::-ms-fill-upper {
+            background: $main;
+          }
+      
+        input[type=text],
+        input[type=email],
+        input[type=number],
+        input[type=password]{
+            display: flex;
+            padding: abs($px*2) abs($px*2);
+            font-family: $font;
+            font-size: abs($px*2);
+            border-radius: $px;
+            margin:abs($px*2) $px;
+            color: $dark;
+            border: 1px solid $grey;
+            background-color: $grey_1;
+            border: none;
+            width: inherit;
+            text-align: center;
+            &:focus{
+                outline: none;
+                border: none;
+            }
+
+            
+        }
+        
+        textarea{
+            display: flex;
+            padding: abs($px*2) abs($px*2);
+            font-family: $font;
+            font-size: abs($px*2);
+            border-radius: abs($px*2);
+            margin:abs($px*2) $px;
+
+            color: $dark;
+            background-color: $lightblue-2;
+            border: none;
+            resize: none;
+            &:focus{
+                outline: none;
+                border: none;
+            }
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus{
+        background: none;
+        }
+        input[type=password]{
+            font-weight: 400;
+        }
+
+    }
+
+
+    
+}
+
+//FILE
+
+.file-select > .select-button {
+    padding: 1rem;
+    background-color:$white;
+    width: 200px;
+    height: 200px;
+    border-radius: abs($px*2);
+    margin:$px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+    &:hover{
+    transition: .3s;
+    box-shadow: $blue_shadow;
+    }
+}
+  
+  .file-select > input[type="file"] {
+    display: none;
+  }
+
+.ic-select-file{
+    width: 40px;
+    height: 28px;
+    background-image: $selectFile;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.file{
+    &-non-select{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p{
+            margin-top: 24px;
+        }
+    }
+    &-selected{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-position: center;
+        background-size: contain;
+        color: $white;
+        p{
+            word-break: break-word;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+
+
+.file-description{
+    color: $darkblue;
+    font-size: abs($px*1.5);
+    width: 150px;
+    margin: $px;
+}
+
+.file-delete{
+    background: none;
+    border:none;
+    color:$white;
+    font-weight: 500;
+    font-family: $font;
+    font-size: abs($px*2);
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.for-mouseover{
+    display: none;
+        &:hover{
+        background-color:$main;
+        display: block;
+        transition: .3s;
+        width: 200px;
+        height: 200px;
+    }
+}
+
+// Hints for password
+
+.hint {
+
+	&-enter {
+		opacity:0;
+		transform:translate3d(-20px,0,0);
+	}
+	&-leave-to {
+		opacity:0;
+		transform:translate3d(0, 20px, 0);
+	}
+	&-enter-active {
+		transition:300ms;
+	}
+	&-leave-active {
+		transition:400ms;
+	}
+}
+
+.hints {
+	max-width:400px;
+	padding:1em;
+	background: transparentize($darkblue,.5);
+    margin: $px;
+    border-radius: $px;
+	font-size: .9em;
+	color:darken(#D4DEDF, 50%);
+	h2 {
+		margin: .5em 0 .2em 0;
+	}
+	p {
+		margin: 0;
+		padding-left:1em;
+		&::before {
+			content:">";
+			font-size:.9em;
+			margin-right:6px;
+			display:inline-block;
+		}
+	}
+}
+
+//Bid controller
+
+.bid{
+    &-controller{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        label{
+            font-size: abs($px*2);
+            color: $darkblue;
+            margin-left: $px;
+        }
+        input[type=text],
+        input[type=email],
+        input[type=number],
+        input[type=password]{
+            
+            display: flex;
+            padding: abs($px*2) abs($px*2);
+            font-family: $font;
+            font-size: abs($px*2);
+            border-radius: $px;
+            margin:$px;
+            color: $dark;
+            border: 1px solid $grey;
+            background-color: $grey_1;
+            border: none;
+            &:focus{
+                outline: none;
+                border: none;
+            }
+            .error{
+                border: 1px solid $danger;
+            }
+        }
+        textarea{
+            display: flex;
+            padding: abs($px*2) abs($px*2);
+            font-family: $font;
+            font-size: abs($px*2);
+            border-radius: $px;
+            border: 1px solid $grey;
+            margin:$px;
+            color: $dark;
+            background-color: $grey_1;
+            border: none;
+            resize: none;
+            &:focus{
+                outline: none;
+                border: none;
+            }
+        }
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus{
+        background: none;
+        }
+        input[type=password]{
+            font-weight: 500;
+        }
+
+    }
+
+
+    
+}
+
+.select{
+    position: relative;
+    font-family: $font;
+    border:none;
+    background: none;
+            border: 1px solid $grey;
+            font-family: $font;
+        transition: .3s;
+        font-weight: 500;
+    font-size: abs($px*2);
+    padding: $px;
+    &:after{
+        content:'';
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iNSIgdmlld0JveD0iMCAwIDExIDUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik01LjUgNUwwLjczNjg2IDAuNUwxMC4yNjMxIDAuNTAwMDAxTDUuNSA1WiIgZmlsbD0iIzM5NDQ1RSIvPgo8L3N2Zz4K");
+        width: 14px;
+        height: 14px;
+    }
+    &:focus{
+        outline: none;
+    }
+    option{
+        display: none;
+    }
+    .option {
+        font-weight: 500;
+        border:none;
+        font-size: abs($px*2);
+        display: block;
+        white-space: pre;
+        min-height: 1.2em;
+        padding: $px!important;
+        &:first-child{
+            border-top-right-radius: $px;
+            border-top-left-radius: $px;
+        }
+    }
+    select{
+        display: none;
+    }
+    &-selected{
+        background-color: $main;
+    }
+    &-items{
+        position: absolute;
+        background-color: $white;
+        top:100%;
+        left: 0;
+        right: 0;
+        z-index:99;
+    }
+    &-hide{
+        display: none;
+    }
+}
+
+.full{
+    width: 100%;
+}
+
+// Radio
+
+.radio {
+    display: grid;
+    grid-template-columns: min-content auto;
+    grid-gap: 0.5em;
+    font-size: abs($px*2);
+    margin: $px;
+    color: $main;
+    cursor: pointer;
+    &:focus-within {
+      .radio__label {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+    }
+  }
+  
+  .radio__label {
+    line-height: 1;
+    transition: 180ms all ease-in-out;
+    opacity: 0.8;
+  }
+  
+  .radio__input {
+    display: flex;
+  
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+  
+      &:focus + .radio__control {
+        box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em $main;
+      }
+    }
+  }
+  
+  .radio-gradient input:checked + .radio__control {
+    background: radial-gradient($main 50%, rgba(255, 0, 0, 0) 51%);
+  }
+  
+  .radio-before {
+    .radio__control {
+      display: grid;
+      place-items: center;
+    }
+  
+    input + .radio__control::before {
+      content: "";
+      width: 0.5em;
+      height: 0.5em;
+      box-shadow: inset 0.5em 0.5em $main;
+      border-radius: 50%;
+      transition: 180ms transform ease-in-out;
+      transform: scale(0);
+    }
+  
+    input:checked + .radio__control::before {
+      transform: scale(1);
+    }
+  }
+  
+  .radio__control {
+    display: block;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: 0.1em solid $main;
+    transform: translateY(-0.05em);
+  }
+  
+  .chosen{
+      margin-bottom: abs($px);
+  }
+
+  .form{
+    &-control{
+        position: relative;
+        flex-direction: column;
+        width: 100%;
+        label{
+            font-size: abs($px*2);
+            color: $darkblue;
+            margin-left: $px;
+        }
+        .circles{
+          display: flex;
+          flex-direction: row;
+          // justify-content: space-between;
+          &-wrapper{
+            position: absolute;
+            top:14px;
+            width: inherit;
+          }
+          .circle{
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: $main;
+            border-radius: 50%;
+            &:nth-child(1){
+              position: absolute;
+              left: 10%;
+            }
+            &:nth-child(2){
+              position: absolute;
+              left: 19.9%;
+            }
+            &:nth-child(3){
+              position: absolute;
+              left: 29.5%;
+            }
+            &:nth-child(4){
+              position: absolute;
+              left: 39.3%;
+            }
+            &:nth-child(5){
+              position: absolute;
+              left: 49%;
+            }
+            &:nth-child(6){
+              position: absolute;
+              left: 58.6%;
+            }
+            &:nth-child(7){
+              position: absolute;
+              left: 68%;
+            }
+            &:nth-child(8){
+              position: absolute;
+              left: 78%;
+            }
+            &:nth-child(9){
+              position: absolute;
+              left: 88%;
+            }
+            &:nth-child(10){
+              position: absolute;
+              left: 88%;
+              display: none;
+            }
+          
+            
+        }
+      }
+        input[type=range] {
+            -webkit-appearance: none;
+            margin: 18px 0;
+            width: 100%;
+          }
+          input[type=range]:focus {
+            outline: none;
+          }
+          input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            z-index: 999;
+            cursor: pointer;
+            animate: 0.2s;
+            background: $main;
+            border-radius: 12px;
+          }
+          input[type=range]::-webkit-slider-thumb {
+            height: 18px;
+            width: 18px;
+            border-radius: 12px;
+            background: $white;
+            border: 1px solid $main;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -8px;
+          }
+          input[type=range]:focus::-webkit-slider-runnable-track {
+            background: $main;
+          }
+          input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 8.4px;
+            cursor: pointer;
+            animate: 0.2s;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            background: #3071a9;
+            border-radius: 1.3px;
+            border: 0.2px solid #010101;
+          }
+          input[type=range]::-moz-range-thumb {
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            border: 1px solid #000000;
+            height: 36px;
+            width: 16px;
+            border-radius: 3px;
+            background: #ffffff;
+            cursor: pointer;
+          }
+          input[type=range]::-ms-track {
+            width: 100%;
+            height: 8.4px;
+            cursor: pointer;
+            animate: 0.2s;
+            background: transparent;
+            border-color: transparent;
+            border-width: 16px 0;
+            color: transparent;
+          }
+          input[type=range]::-ms-fill-lower {
+            background: #2a6495;
+            border: 0.2px solid #010101;
+            border-radius: 2.6px;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+          }
+          input[type=range]::-ms-fill-upper {
+            background: #3071a9;
+            border: 0.2px solid #010101;
+            border-radius: 2.6px;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+          }
+          input[type=range]::-ms-thumb {
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            border: 1px solid #000000;
+            height: 36px;
+            width: 16px;
+            border-radius: 3px;
+            background: #ffffff;
+            cursor: pointer;
+          }
+          input[type=range]:focus::-ms-fill-lower {
+            background: #3071a9;
+          }
+          input[type=range]:focus::-ms-fill-upper {
+            background: $main;
+          }
+        }
+    }
+  
+
+    @media screen and (min-width:360px) and (max-width: 767px){
+      .form{
+        &-controller{
+          
+        input[type=text],
+        input[type=email],
+        input[type=number],
+        input[type=password]{
+            display: flex;
+            padding: abs($px*2) abs($px*2);
+            font-family: $font;
+            font-size: abs($px*2);
+            border-radius: $px;
+            margin:abs($px) $px;
+            color: $dark;
+            border: 1px solid $grey;
+            background-color: $grey_1;
+            border: none;
+            width: inherit;
+            text-align: center;
+            &:focus{
+                outline: none;
+                border: none;
+            }
+            .error{
+                border: 1px solid $danger;
+            }
+        }
+        textarea{
+            display: flex;
+            padding: abs($px*2) abs($px*2);
+            font-family: $font;
+            font-size: abs($px*2);
+            border-radius: abs($px*2);
+            margin:$px $px;
+
+            color: $dark;
+            background-color: $grey_1;
+            border: none;
+            resize: none;
+            &:focus{
+                outline: none;
+                border: none;
+            }
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus{
+        background: none;
+        }
+        input[type=password]{
+            font-weight: 500;
+        }
+        }
+      }
+
+      .bid-controller,
+      // .form-control,
+      .form-controller{
+        width: inherit;
+        textarea,
+        input[type=text],
+        input[type=email],
+        input[type=number],
+        input[type=password]{
+          width: -webkit-fill-available;
+        }
+      }
+    }
+
+
+   input[type=checkbox]{
+    margin: 0px $px; 
+   }
+
+
+  .checkbox{
+    display: flex;
+    &-center{
+      justify-content: center;
+      align-items: center;
+    }
+    
+  }
+  
+
+  @keyframes wobble{
+    0%{
+      position: relative;
+      left: 0px;
+    }
+    30%{
+      position: relative;
+      left: 20px;
+    } 
+    60%{
+      position: relative;
+      left: -20px;
+    }
+    90%{
+      position: relative;
+      left: 20px;
+    }
+    100%{
+      position: relative;
+      left: 0px;
+    }
+  }
+
+  .error{
+    border: 1px solid $danger;
+    animation: wobble .5s linear;
+}
+
+///CHECKBOX
+
+.styled-checkbox {
+  position: absolute; // take it out of document flow
+  opacity: 0; // hide it
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  // Box.
+  & + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background: $grey_1;
+  }
+
+  // Box hover
+  &:hover + label:before {
+    background: $grey_1;
+  }
+  
+  // Box focus
+  &:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+
+  // Box checked
+  &:checked + label:before {
+    background: $grey_1;
+  }
+  
+  // Disabled state label.
+  &:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+
+  // Disabled box.
+  &:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+
+  // Checkmark. Could be replaced with an image
+  &:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 
+      2px 0 0 $main,
+      4px 0 0 $main,
+      4px -2px 0 $main,
+      4px -4px 0 $main,
+      4px -6px 0 $main,
+      4px -8px 0 $main;
+    transform: rotate(45deg);
+  }
+}

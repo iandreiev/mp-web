@@ -1,0 +1,1 @@
+.progress{width:200px;padding:.5rem}.progress progress{width:inherit}.choose-sex{display:flex;flex-direction:row;justify-content:flex-start;margin-top:24px}@media screen and (min-width:360px)and (max-width:767px){.choose-sex{flex-direction:row;margin-top:24px}.choose-sex,.meta-button{display:flex;justify-content:center}}
