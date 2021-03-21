@@ -321,7 +321,7 @@
                     <div class="row">
                       <div class="icon-row">
                         <p>1</p>
-                        <div class="ic ic_btc"></div>
+                        <div class="ic ic-usdt"></div>
                       </div>
                       <p style="margin:0px 4px;">=</p>
                       <div class="icon-row">

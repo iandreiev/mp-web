@@ -53,10 +53,17 @@
         background-position: center center;
         background-size: contain;
         background-repeat: no-repeat;
-        background-image: $search;
         width: abs($px*2);
         height: abs($px*2);
         background-image: $back;
+    }
+    &-usdt{
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: $dollar;
+        width: abs($px*2);
+        height: abs($px*2);
     }
 }
 
