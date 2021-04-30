@@ -6,8 +6,8 @@ import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex)
 Vue.use(VueAxios, axios);
 
-Vue.axios.defaults.baseURL = "https://monopolylife.ru/api/"
-// Vue.axios.defaults.baseURL = "http://localhost:3000/"
+// Vue.axios.defaults.baseURL = "https://monopolylife.ru/api/"
+Vue.axios.defaults.baseURL = "http://localhost:3030/"
 
 const USER = "user"
 const PROJECTS = "projects"

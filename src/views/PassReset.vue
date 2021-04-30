@@ -73,7 +73,7 @@ export default {
         resetPass(){
             let password = this.repeatPassword
             let options = {
-                url: `/users/setPassword/${password}/${this.email}`,
+                url: `users/setPasswordEmail/${password}/${this.email}`,
                 method: "patch",
                 headers:{
                     'Content-Type':'x-www-form-urlencoded'
