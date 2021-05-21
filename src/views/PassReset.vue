@@ -71,9 +71,9 @@ export default {
     },
     methods:{
         resetPass(){
-            let password = this.repeatPassword
+            let password = this.changePassword
             let options = {
-                url: `users/setPasswordEmail/${this.repeatPassword}/${this.email}`,
+                url: `users/resetPasswordEmail/${password}/${this.email}`,
                 method: "patch",
                 headers:{
                     'Content-Type':'x-www-form-urlencoded'
@@ -83,9 +83,11 @@ export default {
             this.$http(options)
             .then((res)=>{
                 this.status = 'ok'
-                setTimeout(()=>{
-                    this.$router.push({name: 'Home'})
-                },2000)
+
+                console.log(res)
+                // setTimeout(()=>{
+                //     this.$router.push({name: 'Home'})
+                // },2000)
             })
             .catch((err)=>{
                 this.status = err
