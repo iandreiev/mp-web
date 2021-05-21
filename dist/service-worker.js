@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.5a8976b0fdb65c606cf5e0f48bdc7a36.js"
+  "/precache-manifest.5725cbe20a097c5a252e61cd444a6d42.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "monopoly"});
