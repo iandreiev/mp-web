@@ -79,7 +79,7 @@
                         <div class="notifications" v-else-if="Object.keys(notifications).length > 0">
                             <div 
                             class="notification-item"
-                            v-for="(item,index) in notifications"
+                            v-for="(item,index) in notifications.slice(0,12)"
                             :key="index"
                             >
                             <div class="col icon-wrapper">
@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="notifications-mobile" v-else>
-                            <div class="notification-item" v-for="(item,index) in notifications" :key="index">
+                            <div class="notification-item" v-for="(item,index) in notifications.slice(0,12)" :key="index">
                                 <div class="row notification-head">
                                     <div class="icon-wrapper">
                                 <div class="ic ic_bell" :class="{'ic_bell_active':item.new}"></div>
