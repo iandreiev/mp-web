@@ -231,7 +231,6 @@
 
             <div class="col main-col">
               <p class="text-accent">{{$t('buyInstruction')}}</p>
-
               <div
                 class="estimation-col estimation-item"
                 v-for="(i, index) in estimate"
@@ -247,7 +246,9 @@
                     v-for="(item, index) in i.estimations"
                     :key="index"
                   >
-                    <p class="estimation-name">
+                    <p class="estimation-name" 
+                    :class="{'text-accent':payData.paySystem == item.payment_system.id}"
+                    >
                       {{ item.payment_system.name }}
                     </p>
                     <p class="estimation-fiat">
@@ -536,7 +537,6 @@ export default {
     toggleEstimate(item, system) {
       this.payData.fiat = system;
       this.payData.paySystem = item.payment_system.id;
-      item.payment_system.name = item.payment_system.name + " (Selected)";
     },
     // PAYMENT METHODS /end
     calculatePrice(){

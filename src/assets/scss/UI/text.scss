@@ -34,7 +34,7 @@ p{
         color: $dark;
     }
     &-accent{
-        color: $main;
+        color: $main!important;
     }
     &-muted{
         color: $lightblue;

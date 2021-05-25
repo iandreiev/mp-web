@@ -946,30 +946,34 @@
 }
 
 .status{
-    position: absolute;
+    // position: absolute;
+    order: 1;
     display: flex;
     flex-direction: row;
+    margin-right: 24px;
     // word-break: break-all;
     width: 300px;
     height: 50px;
     align-items: center;
-    right: 25%;
+    // right: 25%;
     .ic{
         margin-right: $px;
         font-size: 24px;
     }
 }
 
-@media screen and (max-width:1280px){
+@media screen and (min-width:1280px){
     .status{
-        position: absolute;
+        // position: absolute;
         display: flex;
         flex-direction: row;
+    margin-left: 24px;
+
         // word-break: break-all;
         width: 300px;
         height: 50px;
         align-items: center;
-        right: 100px;
+        // right: 100px;
         .ic{
             margin-right: $px;
             font-size: 24px;
@@ -979,14 +983,16 @@
 
 @media screen and (max-width:1440px){
     .status{
-        position: absolute;
+        // position: absolute;
         display: flex;
         flex-direction: row;
         // word-break: break-all;
         width: 300px;
         height: 50px;
+    margin-left: 24px;
+
         align-items: center;
-        right: 17%;
+        // right: 17%;
         .ic{
             margin-right: $px;
             font-size: 24px;
@@ -996,14 +1002,16 @@
 
 @media screen and (min-width: 3440px){
     .status{
-        position: absolute;
+        // position: absolute;
         display: flex;
         flex-direction: row;
         // word-break: break-all;
         width: 300px;
         height: 50px;
+    margin-left: 24px;
+
         align-items: center;
-        right: 36%;
+        // right: 36%;
         .ic{
             margin-right: $px;
             font-size: 24px;
@@ -1015,3 +1023,4 @@
 @media screen and (min-width: 360px) and (max-width: 767px) {
 
 }
+

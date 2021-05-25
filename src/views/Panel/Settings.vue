@@ -140,25 +140,29 @@
                 :name="$t('personalData')"
               >
                 <div class="withdraw-section">
-                  <div class="col-8">
+
+                  <div class="col">
                     <MInputText
+                      style="width:300px;"
                       :label="$t('firstName')"
                       v-model="user.name"
                       :placeholder="user.name || $t('firstName')"
                     />
                     <MInputText
+                      style="width:300px;"
                       :label="$t('surname')"
                       v-model="user.surname"
                       :placeholder="user.surname || $t('surname')"
                     />
                     <MInputText
+                      style="width:300px;"
                       :label="$t('lastName')"
                       v-model="user.fathername"
                       :placeholder="user.fathername || $t('lastName')"
                     />
                   </div>
-                  <div class="col-8">
-                    <div class="form-controller" v-if="isMobile == true">
+                  <div class="col">
+                    <div class="form-controller" v-show="isMobile == true">
                       <input
                         type="text"
                         name="percent"
@@ -171,7 +175,7 @@
                         :class="'ic-wrapper ic_' + phoneStatus.icon"
                       ></div>
                     </div>
-                    <div class="form-controller" v-if="isMobile == true">
+                    <div class="form-controller" v-show="isMobile == true">
                       <input
                         type="text"
                         name="percent"
@@ -184,9 +188,10 @@
                         :class="'ic-wrapper ic_' + emailStatus.icon"
                       ></div>
                     </div>
-                    <div
+                    <div class="d-flex d-flex-row a-c">
+                      <div
                       class="status"
-                      v-if="isMobile == false"
+                      v-show="isMobile == false"
                       id="status-phone"
                       @click="openPhoneVerification"
                     >
@@ -194,13 +199,16 @@
                       <p class="text-accent-1">{{ $t(phoneStatus.status) }}</p>
                     </div>
                     <MInputText
-                      v-if="isMobile == false"
+                      style="width:300px;"
+                      v-show="isMobile == false"
                       v-model="user.phone"
                       :label="$t('phone')"
                       :placeholder="user.phone || $t('phone')"
                     />
-                    <div
-                      v-if="isMobile == false"
+                    </div>
+                    <div class="d-flex d-flex-row a-c">
+                                          <div
+                      v-show="isMobile == false"
                       class="status"
                       id="status-email"
                       @click="openEmailVerification"
@@ -209,12 +217,15 @@
                       <p class="text-accent-1">{{ $t(emailStatus.status) }}</p>
                     </div>
                     <MInputText
-                      v-if="isMobile == false"
+                      style="width:300px;"
+                      v-show="isMobile == false"
                       :label="'E-Mail'"
                       v-model="user.email"
                       :placeholder="user.email || 'E-Mail'"
                     />
+                    </div>
                     <MInputText
+                      style="width:300px;"
                       :label="$t('taxID')"
                       v-model="user.card"
                       :placeholder="user.card || $t('taxID')"

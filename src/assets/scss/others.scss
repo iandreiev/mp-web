@@ -1101,3 +1101,15 @@ hr{
             }
         } 
     }
+
+.d{
+    &-flex{
+        display: flex;
+        &-row{
+            flex-direction: row;
+            &.a-c{
+                align-items: center;
+            }
+        }
+    }
+}
