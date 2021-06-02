@@ -104,7 +104,7 @@
                 {{ i.content }}
               </div>
               <div class="messages-date">
-                  <p class="text-accent-1">{{moment(i.createdAt).fromNow()}}</p>
+                  <p class="text-accent-1">{{moment(i.createdAt).format('MMMM Do YYYY, h:mm:ss a')}}</p>
               </div>
               <!-- <div class="messages-avatar">
                   <img :src="i.avatar" width="32" alt="">
@@ -250,11 +250,17 @@ export default {
     .then((res)=>{
       this.chatData = res.data
     })
-
     this.$http(options)
     .then((res)=>{
       this.messages = res.data
     })
+    setInterval(()=>{
+      console.log('get data in 60sec')
+          this.$http(options)
+    .then((res)=>{
+      this.messages = res.data
+    })
+    },30000)
   }
 };
 </script>
