@@ -342,7 +342,7 @@
         </div>
       </div>
     </div>
-    <notifications group="settings" position="bottom right" />
+    <notifications  group="settings" position="top right" />
     <MModal :id="'phone-verify'" v-if="isPhoneVerify">
       <MModalHead @close="closePhoneVerify" />
       <MModalBody>

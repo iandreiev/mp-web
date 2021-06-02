@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from "../store/index"
+
+let isAuth = store.state.auth
+
 
 Vue.use(VueRouter)
 
@@ -94,6 +98,16 @@ const routes = [
     name: 'UserWrapper',
     component: ()=>import('../views/Panel/Wrapper.vue'),
     props: true,  
+    beforeEnter(to,from,next){
+      if(isAuth == true){
+        next()
+      }
+      else{
+        next({
+          name: 'Home'
+        })
+      }
+    },
     meta: {
       requiresAuth: true
   },
@@ -214,7 +228,6 @@ const routes = [
 ]
 
 
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -224,9 +237,7 @@ const router = new VueRouter({
       return savedPosition
     } 
       return { x: 0, y: 0 }
-    
-  },
-  
+  }
 })
 
 export default router
