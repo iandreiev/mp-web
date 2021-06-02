@@ -22,7 +22,7 @@
             &-avatar {
                 img {
                     width: abs($px * 3);
-                    height: abs($px * 3);
+                    height: abs($px * 3)!important;
                     border-radius: 50%;
                 }
             }

@@ -107,7 +107,7 @@
                     ? $t("sell")
                     : i.action == "withdraw"
                     ? $t("withdraw")
-                    : "unknown"
+                    : i.action
                 }}
               </td>
               <td>
@@ -124,7 +124,7 @@
                     ? $t("Provided")
                     : i.proviso == 401
                     ? $t("Canceled")
-                    : "unknown"
+                    : i.proviso
                 }}
               </td>
             </router-link>
@@ -157,7 +157,7 @@
                     ? $t("buy")
                     : i.action == "sell"
                     ? $t("sell")
-                    : "unknown"
+                    : i.action
                 }}
               </div>
               <div class="table-mobile-item--body">
@@ -174,7 +174,7 @@
                     ? $t("Provided")
                     : i.proviso == 401
                     ? $t("Canceled")
-                    : "unknown"
+                    : i.proviso
                 }}
               </div>
             </div>

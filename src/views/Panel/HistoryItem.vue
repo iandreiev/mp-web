@@ -74,7 +74,7 @@
                     <div class="operation-section">
                         <div class="operation-row">
                             <p class="text-accent-1">{{$t('condition')}}</p>
-                            <p class="text-dark">{{logs.proviso == 200 ? $t('Enrollment') : logs.proviso == 201 ? $t('Provided') : logs.proviso == 401 ? $t('Canceled') :"unknown"}}</p>
+                            <p class="text-dark">{{logs.proviso == 200 ? $t('Enrollment') : logs.proviso == 201 ? $t('Provided') : logs.proviso == 401 ? $t('Canceled') : logs.proviso}}</p>
                         </div>
                         <div class="operation-row">
                             <p class="text-accent-1">{{$t('IP')}}:</p>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="operation-row">
                             <p class="text-accent-1">{{$t('paymentMethod')}}</p>
-                            <p class="text-dark">{{logs.payment == 101 ? "Coinpayments" : logs.payment == 102 ? "VISA" :logs.payment == 103 ? "Mastercard":''}}</p>
+                            <p class="text-dark">{{logs.payment == 101 ? "Coinpayments" : logs.payment == 102 ? "VISA" :logs.payment == 103 ? "Mastercard": logs.payment}}</p>
                         </div>
                     </div>
                     <div class="operation-button">

@@ -32,6 +32,7 @@ export default new Vuex.Store({
     showRegister: false,
     showLogin: false,
     showLangs: false,
+    showUserNav: false,
     showProject: false,
     showPayout: false,
     showThanks: false,
@@ -53,7 +54,8 @@ export default new Vuex.Store({
     isPlayer: false,
     rateBTC: null,
     currentProduct:{},
-    currentUserProject: null
+    currentUserProject: null,
+    user_ip: ''
   },
   mutations: {
     debug(state) {
@@ -222,9 +224,31 @@ export default new Vuex.Store({
     },
     CURRENT_MODAL_PROJECT(state, currentUserProject){
       state.currentUserProject = currentUserProject
+    },
+    SET_DROPDOWN_LANG(state,arg){
+      state.showLangs = arg
+    },
+    SET_DROPDOWN_USER(state,arg){
+      state.showUserNav = arg
+    },
+    SET_IP(state,ip){
+      state.user_ip = ip
     }
   },
   actions: {
+    getUserIP({commit}){
+      let options = {
+        url: 'https://ipinfo.io/?token=ae4719bcd65f8b',
+        method:'get'
+      }
+      Vue.axios(options)
+      .then(res=>{
+        commit('SET_IP', res.data)
+      })
+      .catch(err=>{
+        throw new Error(`We get an error! ${err}`);
+      })
+    },
     getUser({ commit }) {
       Vue.axios.post(USER)
         .then(res => {

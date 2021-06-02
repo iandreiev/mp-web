@@ -1,13 +1,14 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <transition
+    
       name="fade"
       mode="out-in"
       @beforeLeave="beforeLeave"
       @enter="enter"
       @afterEnter="afterEnter"
     >
-      <router-view />
+      <router-view  />
     </transition>
    
   </div>
@@ -29,7 +30,6 @@ export default {
     };
   },
   methods: {
-   
     beforeLeave(element) {
       this.prevHeight = getComputedStyle(element).height;
     },
@@ -54,7 +54,7 @@ export default {
     }
   },
   computed: {
-    
+    ...mapState(['showLangs'])
   },
   watch: {
     

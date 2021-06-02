@@ -10,6 +10,8 @@ import Notifications from 'vue-notification'
 import VueMeta from 'vue-meta'
 import i18n from './i18n'
 import VueCarousel from "vue-carousel"
+import vClickOutside from 'v-click-outside'
+
 
 import axios from "axios"
 import VueMoment from 'vue-moment';
@@ -46,7 +48,7 @@ const moment = require("moment")
     require("moment/locale/ru")
     localStorage.setItem('locale','"ru"')
   }
-
+ 
 
 // Vue.prototype.$moment = moment;
 
@@ -55,6 +57,7 @@ Vue.use(VueMoment, moment)
 Vue.use(Notifications)
 Vue.use(VueCarousel)
 Vue.use(VueMeta)
+Vue.use(vClickOutside)
 
 firebase.initializeApp({
   apiKey: "AIzaSyDTCEwMzp4m3InTsK-NzwS131SW22m7Px8",

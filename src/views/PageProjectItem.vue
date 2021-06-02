@@ -583,6 +583,7 @@ export default {
       };
 
       axios(options).then((res) => {
+        console.log(res)
         this.$router.push({ name: "Payout", params: { id: res.data.id } });
         window.open(res.data.payment_url, "_blank");
       });

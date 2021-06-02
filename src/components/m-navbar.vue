@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <div class="navbar-mobile" :class="{ 'make-blue': showNav }">
       <div
         class="logo-blend"
@@ -10,6 +10,7 @@
         class="lang-selector"
         @click="isLangDrop = !isLangDrop"
         :class="{ unvisible: showNav }"
+       
       >
         <div class="lang-selector-item">
           <img
@@ -131,7 +132,7 @@
           <div class="col-12 navbar-item-wrapper">
             <div class="navbar-item">
               <div class="navbar-logo-default" @click="toHome"></div>
-              <div class="lang-selector" @click="isLangDrop = !isLangDrop">
+              <div class="lang-selector" v-click-outside="cancelLang" @click="toggleLang()">
                 <div class="lang-selector-item">
                   <img
                     :src="
@@ -162,7 +163,7 @@
 
               <div
                 class="lang_dropdown"
-                :class="{ 'lang_dropdown--active': isLangDrop }"
+                :class="{ 'lang_dropdown--active': showLangs }"
               >
                 <div class="lang_dropdown-item" @click="setLocale('ru')">
                   <img
@@ -345,7 +346,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="navbar-user-meta" @click="isDropDown = !isDropDown">
+                <div class="navbar-user-meta" v-click-outside="cancelUserMenu" @click="toggleUserMenu()">
                   <div class="navbar-user-meta-avatar">
                     <img :src="user.avatar" alt="" />
                   </div>
@@ -355,7 +356,7 @@
                 </div>
                 <div
                   class="dropdown"
-                  :class="{ 'dropdown--active': isDropDown }"
+                  :class="{ 'dropdown--active': showUserNav }"
                 >
                   <ul class="dropdown-links">
                     <router-link
@@ -397,8 +398,10 @@ import MButton from "../components/UI/m-button";
 import MLoginModal from "../components/m-login";
 import MRegisterModal from "../components/m-register";
 export default {
-  components: { MButton, MLoginModal, MRegisterModal },
-
+  components: { MButton, MLoginModal, MRegisterModal,  },
+  directives:{
+    
+  },
   data() {
     return {
       showModal: false,
@@ -478,6 +481,18 @@ export default {
     };
   },
   methods: {
+        cancelLang(){
+      this.$store.commit('SET_DROPDOWN_LANG', false)
+    },
+    toggleLang(){
+      this.$store.commit('SET_DROPDOWN_LANG', true)
+    },
+    toggleUserMenu(){
+      this.$store.commit('SET_DROPDOWN_USER', true)
+    },
+    cancelUserMenu(){
+      this.$store.commit('SET_DROPDOWN_USER', false)
+    },
     setLocale(locale) {
       this.$i18n.locale = locale;
       moment.locale(locale);
@@ -493,7 +508,6 @@ export default {
     openLogin() {
       this.$store.commit("SHOW_LOGIN", true);
     },
-
     openRegister() {
       this.$store.commit("SHOW_REGISTER", true);
 
@@ -605,7 +619,9 @@ export default {
       "locale",
       "setup",
       "isSearch",
-      "locale"
+      "locale",
+      "showLangs",
+      "showUserNav"
     ]),
     filteredItems() {
       if (this.locale == "ru") {
