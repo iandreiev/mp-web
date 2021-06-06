@@ -60,6 +60,7 @@ export default {
     
   },
   mounted(){
+    this.$store.dispatch('getUserIP')
 this.$i18n.locale = this.locale
   }
 };
