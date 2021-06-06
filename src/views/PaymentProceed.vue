@@ -117,9 +117,29 @@ export default {
   },
   computed: {
       ...mapActions(["getUserIP"]),
-    ...mapState(["accessToken", "currentProduct", "user", "user_ip"]),
+    ...mapState(["accessToken", "currentProduct", "rateBTC", "user", "user_ip"]),
   },
   methods: {
+      doTx(){
+          let data = {
+              userID: this.user.id,
+              type: 1,
+              amount: this.data.amount,
+              rate_btc: this.rateBTC,
+              projectID: this.currentProduct.projectID,
+              shareSize: this.currentProduct.shareSize
+          }
+
+          let options = { 
+              url:'doTx',
+              method:'post',
+              data: data
+          }
+
+          this.$http(options)
+          .then(res=>console.log(res))
+          .catch(err=>console.log(err))
+      },
     sendLogs(type,action){
         let data = {
             type: type,
@@ -193,17 +213,20 @@ export default {
           this.getUserProjects();
           this.getProjects();
           this.sendLogs(1, 'pay')
+          this.doTx()
           console.log("BUY");
         }
         if (this.currentProduct.API_TYPE == "increase") {
           this.doIncrease();
           this.getProjects();
           this.getUserProjects();
+          this.doTx()
           this.sendLogs(1,'increase')
         }
         if (this.currentProduct.API_TYPE == "topup") {
           this.doTopUp();
           this.getWallet();
+          this.doTx()
           this.sendLogs(1,'topup')
         }
 
