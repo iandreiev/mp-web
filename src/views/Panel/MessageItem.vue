@@ -197,7 +197,8 @@ export default {
           userID:  this.user.id, 
           fromID: 77, 
           chatID: this.id,
-          type: 1
+          type: 1,
+          createdAt: new Date().toISOString().slice(0, 19).replace('T', ' ')
         }
  
         let options = {

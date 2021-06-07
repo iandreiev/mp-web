@@ -153,16 +153,27 @@ export default {
         fromID: 77,
         chatID: null,
         type: 1,
+        createdAt: new Date().toISOString().slice(0, 19).replace('T', ' ')
       },
       chatData: {
         type: 1,
-        address: this.user.id,
+        address: 77,
         chatTitle: null,
-        userID: 77,
+        userID: this.user.id,
+        createdAt: new Date().toISOString().slice(0, 19).replace('T', ' ')
       },
     };
   },
   methods: {
+    getChats(){
+      let options = {
+        url: `${"chat/" + this.user.id}`,
+      method: "get",
+      }
+
+      this.$http(options)
+      .then(res=>this.$store.commit('SAVE_MESSAGES',res.data))
+    },
         createInstanceChatMsg(){
       let createChat = {
         url:'chat',
@@ -188,7 +199,9 @@ export default {
         this.$http(sendMessage)
         .then((res)=>{
           this.chatCreated = true
+          console.log(res)
           this.$router.push({name: 'MessageItem', params:{id: this.msgData.chatID}, props:{id: this.msgData.chatID},})
+          this.getChats()
         })
       })
       
