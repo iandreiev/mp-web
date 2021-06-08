@@ -237,25 +237,7 @@ export default {
     };
   },
   methods:{
-    getToken(){
-      const PAY_API = "https://api.staging.iserverbot.ru/v1/"
-      const REFRESH_TOKEN = this.setup[0].wallet
-
-      let options = {
-        url:`${PAY_API}auth/access-token`,
-        method:'post',
-        headers:{
-          Authorization:`Bearer ${REFRESH_TOKEN}`
-        }
-      }
-
-       axios(options)
-      .then(res=>{
-        this.$store.commit('REFRESH_TOKEN',res.data.access_token)
-
-      })
-      .catch(err=>console.log(err))
-    },
+   
     updatePaused(event){
       this.videoElement = event.target;
       this.paused = event.target.paused;
@@ -320,16 +302,6 @@ export default {
             this.$store.commit("SAVE_CATEGORIES", res.data)
 
     })
-    
-
-    this.$http(getSetup)
-    .then((res)=>{
-      this.$store.commit("SAVE_SETUP", res.data)
-    })
-
-    setTimeout(()=>{
-      this.getToken()
-    },1000)
   },
   computed:{
     ...mapState(["projects","categories","locale", "isMobile", "setup"]),

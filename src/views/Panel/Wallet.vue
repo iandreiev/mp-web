@@ -150,7 +150,7 @@
                     v-for="(item, index) in i.estimations"
                     :key="index"
                   >
-                    <p class="estimation-name">
+                    <p class="estimation-name" :class="{'text-accent':payData.paySystem == item.payment_system.id}">
                       {{ item.payment_system.name }}
                     </p>
                     <p class="estimation-fiat">
@@ -162,7 +162,6 @@
                           : i.fiat.name == "rub"
                           ? "RUR"
                           : i.fiat.name)
-                        +  convertToBTC(item.estimated_fiat_amount, i.fiat.name)
                       }}
                     </p>
                   </div>
@@ -297,7 +296,6 @@ export default {
         toggleEstimate(item, system) {
       this.payData.fiat = system;
       this.payData.paySystem = item.payment_system.id;
-      item.payment_system.name = item.payment_system.name + " (Selected)";
     },
      convertToBTC(summ, currency){
        let rate = this.rateBTC;

@@ -6,8 +6,8 @@ import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex)
 Vue.use(VueAxios, axios);
 
-Vue.axios.defaults.baseURL = "https://monopolylife.ru/api/"
-// Vue.axios.defaults.baseURL = "http://localhost:3031/"
+// Vue.axios.defaults.baseURL = "https://monopolylife.ru/api/"
+Vue.axios.defaults.baseURL = "http://localhost:3031/"
 
 const USER = "user"
 const PROJECTS = "projects"
@@ -248,6 +248,19 @@ export default new Vuex.Store({
       .catch(err=>{
         throw new Error(`We get an error! ${err}`);
       })
+    },
+    reloadUserState({commit}, data){
+        data.forEach(i=>{
+          Vue.axios({
+            url: i.endpoint,
+            method:i.method
+          })
+          .then(res=>{
+            console.log(res.data)
+            commit(i.state, res.data)})
+          .catch(err => console.error(err))
+        })
+    
     },
     getUser({ commit }) {
       Vue.axios.post(USER)

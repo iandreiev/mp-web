@@ -237,7 +237,7 @@ export default {
             this.$http(getWallet)
               .then((res) => {
                 this.$store.commit("SAVE_USER_WALLET", res.data);
-                this.$router.push({ name: "UserWrapper" });
+                this.$router.push({ name: "UserWrapper" }).catch(()=>{});
                 this.$store.commit("SHOW_LOGIN", false);
               })
               .catch((err) => {});

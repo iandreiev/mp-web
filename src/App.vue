@@ -1,20 +1,19 @@
 <template>
-  <div id="app" >
+  <div id="app">
     <transition
-    
       name="fade"
       mode="out-in"
       @beforeLeave="beforeLeave"
       @enter="enter"
       @afterEnter="afterEnter"
     >
-      <router-view  />
+      <router-view />
     </transition>
-   
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import { mapState } from "vuex";
 export default {
   metaInfo: {
@@ -26,10 +25,41 @@ export default {
   data() {
     return {
       prevHeight: 0,
-      locale: JSON.parse(localStorage.locale)
+      locale: JSON.parse(localStorage.locale),
     };
   },
   methods: {
+    getSetup() {
+      let getSetup = {
+        url: "setup",
+        method: "get",
+      };
+
+      this.$http(getSetup).then((res) => {
+        this.$store.commit("SAVE_SETUP", res.data);
+
+        this.getToken();
+      });
+    },
+    getToken() {
+      const PAY_API = "https://api.staging.iserverbot.ru/v1/";
+      const REFRESH_TOKEN = this.setup[0].wallet;
+
+      let options = {
+        url: `${PAY_API}auth/access-token`,
+        method: "post",
+        headers: {
+          Authorization: `Bearer ${REFRESH_TOKEN}`,
+        },
+      };
+
+      axios(options)
+        .then((res) => {
+          console.log("ACCESS_TOKEN_GRANTED");
+          this.$store.commit("REFRESH_TOKEN", res.data.access_token);
+        })
+        .catch((err) => console.log(err));
+    },
     beforeLeave(element) {
       this.prevHeight = getComputedStyle(element).height;
     },
@@ -54,15 +84,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(['showLangs'])
+    ...mapState(["showLangs", "setup", "accessToken"]),
   },
-  watch: {
-    
+  watch: {},
+  mounted() {
+    this.$store.dispatch("getUserIP");
+    this.$i18n.locale = this.locale;
+    this.getSetup();
   },
-  mounted(){
-    this.$store.dispatch('getUserIP')
-this.$i18n.locale = this.locale
-  }
 };
 </script>
 
@@ -78,6 +107,4 @@ this.$i18n.locale = this.locale
 .fade-leave-active {
   opacity: 0;
 }
-
-
 </style>

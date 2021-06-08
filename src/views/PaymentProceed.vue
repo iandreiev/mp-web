@@ -116,63 +116,60 @@ export default {
     };
   },
   computed: {
-      ...mapActions(["getUserIP"]),
-    ...mapState(["accessToken", "currentProduct", "rateBTC", "user", "user_ip"]),
+    ...mapActions(["getUserIP"]),
+    ...mapState([
+      "accessToken",
+      "currentProduct",
+      "rateBTC",
+      "user",
+      "user_ip",
+    ]),
   },
   methods: {
-      doTx(){
-          let data = {
-              userID: this.user.id,
-              type: 1,
-              amount: this.data.amount,
-              rate_btc: this.rateBTC,
-              projectID: this.currentProduct.projectID,
-              shareSize: this.currentProduct.shareSize
-          }
-
-          let options = { 
-              url:'doTx',
-              method:'post',
-              data: data
-          }
-
-          this.$http(options)
-          .then(res=>console.log(res))
-          .catch(err=>console.log(err))
-      },
-    sendLogs(type,action){
-        let data = {
-            type: type,
-            userID: this.user.id,
-            createdAt: new Date().toISOString().slice(0, 19).replace('T', ' '),
-            amount: this.data.amount,
-            proviso:201,
-            status: 2,
-            payment: this.paymentSystem.name,
-            action: action,
-            ip: this.user_ip.ip
-        }
-
-        let options = {
-            url: 'logs',
-            method:'post',
-            data: data
-        }
-
-        this.$http(options)
-        .then(res=>console.log(res))
-        .catch(err=>console.log(err))
-    },
-    getWallet() {
+    doTx(data) {
       let options = {
-        url: `users/${this.currentProduct.userID}/wallet`,
-        method: "get",
+        url: "doTx",
+        method: "post",
+        data: data,
       };
 
-      this.$http(options).then((res) => {
-        this.$store.commit("SAVE_USER_WALLET", res.data);
-      });
+      this.$http(options)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     },
+    sendLogs(type, action) {
+      let data = {
+        type: type,
+        userID: this.user.id,
+        createdAt: new Date().toISOString().slice(0, 19).replace("T", " "),
+        amount: this.data.amount,
+        proviso: 201,
+        status: 2,
+        payment: this.paymentSystem.name,
+        action: action,
+        ip: this.user_ip.ip,
+      };
+
+      let options = {
+        url: "logs",
+        method: "post",
+        data: data,
+      };
+
+      this.$http(options)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    },
+    // getWallet() {
+    //   let options = {
+    //     url: `users/${this.currentProduct.userID}/wallet`,
+    //     method: "get",
+    //   };
+
+    //   this.$http(options).then((res) => {
+    //     this.$store.commit("SAVE_USER_WALLET", res.data);
+    //   });
+    // },
     getUserInfo() {
       let options = {
         url: `users/${this.currentProduct.userID}`,
@@ -209,28 +206,55 @@ export default {
         clearInterval(this.getInvoiceData);
 
         if (this.currentProduct.API_TYPE == "buy") {
+          let data = {
+        userID: this.user.id,
+        type: 1,
+        amount: this.data.amount,
+        rate_btc: this.rateBTC,
+        projectID: this.currentProduct.projectID,
+        shareSize: this.currentProduct.shareSize,
+        createdAt: new Date().toISOString().slice(0, 19).replace("T", " "),
+      }
+
           this.doPay();
           this.getUserProjects();
           this.getProjects();
-          this.sendLogs(1, 'pay')
-          this.doTx()
-          console.log("BUY");
+          this.sendLogs(1, "pay");
+          this.doTx(data);
         }
         if (this.currentProduct.API_TYPE == "increase") {
+                    let data = {
+        userID: this.user.id,
+        type: 1,
+        amount: this.data.amount,
+        rate_btc: this.rateBTC,
+        projectID: this.currentProduct.projectID,
+        shareSize: this.currentProduct.shareSize,
+        createdAt: new Date().toISOString().slice(0, 19).replace("T", " "),
+      }
+
           this.doIncrease();
           this.getProjects();
           this.getUserProjects();
-          this.doTx()
-          this.sendLogs(1,'increase')
+          this.doTx(data);
         }
         if (this.currentProduct.API_TYPE == "topup") {
+                    let data = {
+        userID: this.user.id,
+        type: 1,
+        amount: this.data.amount,
+        rate_btc: this.rateBTC,
+        projectID: 522,
+        shareSize: 522,
+        createdAt: new Date().toISOString().slice(0, 19).replace("T", " "),
+      }
+
           this.doTopUp();
           this.getWallet();
-          this.doTx()
-          this.sendLogs(1,'topup')
+          this.doTx(data);
+          this.sendLogs(1, "topup");
+          
         }
-
-        console.log("Interval cleared");
 
         return;
       }
@@ -284,6 +308,7 @@ export default {
     },
     toHome() {
       this.$router.push({ name: "Home" });
+      clearInterval(this.getInvoiceData);
       this.$store.commit("SET_CURRENT_PRODUCT", {});
     },
     // PDF GENERATOR
@@ -358,6 +383,15 @@ export default {
         })
         .catch((err) => console.log(err));
     },
+    getWallet(){
+      let options = {
+        url: `users/${this.user.id}/wallet`,
+        method:'get'
+      }
+
+      this.$http(options)
+      .then(res=>{this.$store.commit('SAVE_USER_WALLET', res.data)})
+    },
     getProject() {
       let options = {
         url: `projects/${this.currentProduct.projectID}`,
@@ -366,6 +400,17 @@ export default {
 
       this.$http(options).then((res) => (this.project = res.data));
     },
+    // reloadStates(){
+    //   let data = [
+    //     {
+    //       endpoint: `users/${this.user.userID}/wallet`,
+    //       method:'get',
+    //       state: 'SAVE_USER_WALLET',
+    //     }
+    //   ]
+      
+    //   this.$store.dispatch('reloadUserState', data)
+    // }
   },
   created() {
     this.getProject();
@@ -375,7 +420,9 @@ export default {
       this.getPaySystem(this.data.payment_system_id);
     }, 800);
   },
-  mounted() {},
+  mounted() {
+   
+  },
 
   components: {
     MFooter,
