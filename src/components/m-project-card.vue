@@ -149,4 +149,10 @@ export default {
 .h-m-b-2{
   margin-bottom: 15px;
 }
+
+.catalogue-panel-column{
+  .col-6{
+    margin: 8px;
+  }
+}
 </style>
