@@ -236,6 +236,24 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getUserNots({commit},id){
+      let options = {
+        url:`${"notifications/user/" + id}`,
+        method:'get'
+      }
+
+      Vue.axios(options)
+      .then(res=>commit('SAVE_NOTIFICATIONS', res.data))
+    },
+    getUserMsgs({commit},id){
+      let options = {
+        url:`${"chat/" + id}`,
+        method:'get'
+      }
+
+      Vue.axios(options)
+      .then(res=>commit('SAVE_MESSAGES', res.data))
+    },
     getUserIP({commit}){
       let options = {
         url: 'https://ipinfo.io/?token=ae4719bcd65f8b',

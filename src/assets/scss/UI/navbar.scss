@@ -7,6 +7,16 @@
     // height: abs($px*10);
     padding: abs($px * 2) 0px;
     border-bottom: 1px solid transparentize($black, 0.9);
+    .counter{
+        position: relative;
+        top: -10px;
+        width: 18px;
+        height: 18px;
+        background: $main;
+        border-radius: 18px;
+        text-align: center;
+        color: $white;
+    }
     &-mobile {
         display: none;
     }

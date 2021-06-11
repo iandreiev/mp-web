@@ -347,6 +347,9 @@
                   </div>
                 </div>
                 <div class="navbar-user-meta" v-click-outside="cancelUserMenu" @click="toggleUserMenu()">
+                  <div class="counter" v-if="getListOfNotifications != 0">
+                    {{getListOfNotifications}}
+                  </div>
                   <div class="navbar-user-meta-avatar">
                     <img :src="user.avatar" alt="" />
                   </div>
@@ -610,9 +613,17 @@ export default {
             });
         });
     },
+    getMessages(){
+          this.auth == true ? this.$store.dispatch('getUserMsgs', this.user.id) : ''
+    },
+    getNots(){
+        this.auth == true ? this.$store.dispatch('getUserNots', this.user.id) : console.log('login first')
+    }
   },
   computed: {
     ...mapState([
+      'messages',
+      'notifications',
       "user",
       "auth",
       "wallet",
@@ -623,6 +634,16 @@ export default {
       "showLangs",
       "showUserNav"
     ]),
+        getListOfMessages(){
+      let msgs = this.messages
+
+      return msgs.filter(i=>i.type == 1).length
+    },
+    getListOfNotifications(){
+      let nots = this.notifications
+
+      return nots.filter(i=>i.type == 1).length 
+    },
     filteredItems() {
       if (this.locale == "ru") {
         return this.dataList
@@ -663,6 +684,9 @@ export default {
     this.$http(options).then((res) => {
       this.dataList = res.data;
     });
+
+    this.getNots()
+    this.getMessages()
   },
 };
 </script>

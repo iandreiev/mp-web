@@ -1,6 +1,8 @@
 <template>
   <div id="ip">
-    {{user_ip}}
+    <!-- {{user_ip}} -->
+    {{getListOfMessages}}
+    {{getListOfNotifications}}
   </div>
 </template>
 
@@ -14,9 +16,29 @@ export default {
   },
   computed:{
     ...mapActions(['getUserIP']),
-    ...mapState(["user_ip"])
+    ...mapState(["user_ip",'user', 'auth', 'notifications', 'messages']),
+    getListOfMessages(){
+      let msgs = this.messages
+
+      return msgs.filter(i=>i.type == 1).length
+    },
+    getListOfNotifications(){
+      let nots = this.notifications
+
+      return nots.filter(i=>i.type == 1).length
+    }
+  },
+  methods:{
+    getMessages(){
+      this.$store.dispatch('getUserMsgs', this.user.id)
+    },
+    getNots(){
+      this.$store.dispatch('getUserNots', this.user.id)
+    }
   },
   mounted(){
+    this.getMessages()
+    this.getNots()
   }
 }
 </script>
