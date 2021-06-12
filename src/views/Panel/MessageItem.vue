@@ -233,9 +233,40 @@ export default {
     
   },
   computed:{
-    ...mapState(["locale"])
+    ...mapState(["locale"]),
+       setNotifType(id) {
+      let options = {
+        url: `msg/hide/${id}/0`,
+        method: "patch",
+      };
+      let getNotify = {
+        url: `${"msg/user/" + this.user.id}`,
+        method: "get",
+      };
+
+      if (type == 0) {
+      } else {
+        this.$http(options)
+          .then((res) => {})
+          .then(() => {
+            this.$http(getNotify).then((res) => {
+              this.$store.commit("SAVE_MESSAGES", res.data);
+            });
+          })
+          .catch((err) => {
+            console.error("Піймав на вила");
+          });
+      }
+    },
   },
   mounted(){
+        setTimeout(() => {
+      let notifs = this.messages;
+
+      notifs.forEach((i) => {
+        this.setNotifType(i.id);
+      });
+    }, 5000);
 
     let options = {
       url: `${"msg/user/chat/" + this.id}`,

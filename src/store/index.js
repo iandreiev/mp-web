@@ -55,10 +55,12 @@ export default new Vuex.Store({
     rateBTC: null,
     currentProduct:{},
     currentUserProject: null,
-    user_ip: ''
+    user_ip: '',
+    msg_counter:{}
   },
   mutations: {
     debug(state) {
+    state.msg_counter = {},
       state.accessToken = '',
       state.user = [],
         state.auth = false,
@@ -108,7 +110,8 @@ export default new Vuex.Store({
         state.passport_2 = null
       state.investings = [],
         state.stat = [],
-        state.withdraws = []
+        state.withdraws = [],
+        state.msg_counter = {}
     },
     REFRESH_TOKEN(state,accessToken){
       state.accessToken = accessToken
@@ -233,6 +236,9 @@ export default new Vuex.Store({
     },
     SET_IP(state,ip){
       state.user_ip = ip
+    },
+    SET_MSG_COUNTER(state,counter){
+      state.msg_counter = counter
     }
   },
   actions: {
@@ -245,6 +251,15 @@ export default new Vuex.Store({
       Vue.axios(options)
       .then(res=>commit('SAVE_NOTIFICATIONS', res.data))
     },
+    getUserMsgsCount({commit},id){
+      let options = {
+        url:`${"msg/user/count/" + id + '/1'}`,
+        method:'get'
+      }
+
+      Vue.axios(options)
+      .then(res=>commit('SET_MSG_COUNTER', res.data))
+    },  
     getUserMsgs({commit},id){
       let options = {
         url:`${"chat/" + id}`,

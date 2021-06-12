@@ -616,6 +616,9 @@ export default {
     getMessages(){
           this.auth == true ? this.$store.dispatch('getUserMsgs', this.user.id) : ''
     },
+        getMessagesCounter(){
+          this.auth == true ? this.$store.dispatch('getUserMsgsCount', this.user.id) : ''
+    },
     getNots(){
         this.auth == true ? this.$store.dispatch('getUserNots', this.user.id) : console.log('login first')
     }
@@ -632,17 +635,15 @@ export default {
       "isSearch",
       "locale",
       "showLangs",
-      "showUserNav"
+      "showUserNav",
+      "msg_counter"
     ]),
-        getListOfMessages(){
-      let msgs = this.messages
-
-      return msgs.filter(i=>i.type == 1).length
-    },
     getListOfNotifications(){
       let nots = this.notifications
-
-      return nots.filter(i=>i.type == 1).length 
+      let msg =  parseInt(this.msg_counter.result)
+      let not = nots.filter(i=>i.type == 1).length
+      console.log('Notification all:', msg+not)
+      return msg + not
     },
     filteredItems() {
       if (this.locale == "ru") {
@@ -687,6 +688,7 @@ export default {
 
     this.getNots()
     this.getMessages()
+    this.getMessagesCounter()
   },
 };
 </script>

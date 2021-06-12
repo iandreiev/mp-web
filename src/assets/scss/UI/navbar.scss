@@ -10,12 +10,12 @@
     .counter{
         position: relative;
         top: -10px;
-        width: 18px;
-        height: 18px;
+        padding: 4px;
         background: $main;
         border-radius: 18px;
         text-align: center;
         color: $white;
+        font-size: 12px;
     }
     &-mobile {
         display: none;
