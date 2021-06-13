@@ -230,13 +230,9 @@ export default {
       showNavItems(){
       this.showMiniNav = !this.showMiniNav
     },
-    
-  },
-  computed:{
-    ...mapState(["locale"]),
-       setNotifType(id) {
+          setNotifType(id,type) {
       let options = {
-        url: `msg/hide/${id}/0`,
+        url: `msg/hide/${id}`,
         method: "patch",
       };
       let getNotify = {
@@ -245,28 +241,32 @@ export default {
       };
 
       if (type == 0) {
+        
       } else {
         this.$http(options)
           .then((res) => {})
           .then(() => {
             this.$http(getNotify).then((res) => {
-              this.$store.commit("SAVE_MESSAGES", res.data);
+              this.$store.dispatch('getUserMsgsCount', this.user.id)
             });
           })
           .catch((err) => {
-            console.error("Піймав на вила");
+            console.error(err);
           });
       }
     },
+  },
+  computed:{
+    ...mapState(["locale", "user"]),
   },
   mounted(){
         setTimeout(() => {
       let notifs = this.messages;
 
       notifs.forEach((i) => {
-        this.setNotifType(i.id);
+        this.setNotifType(i.id, i.type);
       });
-    }, 5000);
+    }, 200);
 
     let options = {
       url: `${"msg/user/chat/" + this.id}`,
