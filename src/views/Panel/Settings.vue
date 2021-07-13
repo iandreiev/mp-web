@@ -25,8 +25,7 @@
                 "
               ></span>
               <!-- <a :href="href" >{{ $t(item.title) }}</a> -->
-              {{$t(item.title)}}
-              
+              {{ $t(item.title) }}
             </li>
           </router-link>
         </ul>
@@ -140,22 +139,21 @@
                 :name="$t('personalData')"
               >
                 <div class="withdraw-section">
-
                   <div class="col">
                     <MInputText
-                      style="width:300px;"
+                      style="width: 300px"
                       :label="$t('firstName')"
                       v-model="user.name"
                       :placeholder="user.name || $t('firstName')"
                     />
                     <MInputText
-                      style="width:300px;"
+                      style="width: 300px"
                       :label="$t('surname')"
                       v-model="user.surname"
                       :placeholder="user.surname || $t('surname')"
                     />
                     <MInputText
-                      style="width:300px;"
+                      style="width: 300px"
                       :label="$t('lastName')"
                       v-model="user.fathername"
                       :placeholder="user.fathername || $t('lastName')"
@@ -190,42 +188,46 @@
                     </div>
                     <div class="d-flex d-flex-row a-c">
                       <div
-                      class="status"
-                      v-show="isMobile == false"
-                      id="status-phone"
-                      @click="openPhoneVerification"
-                    >
-                      <div :class="'ic ic_' + phoneStatus.icon"></div>
-                      <p class="text-accent-1">{{ $t(phoneStatus.status) }}</p>
-                    </div>
-                    <MInputText
-                      style="width:300px;"
-                      v-show="isMobile == false"
-                      v-model="user.phone"
-                      :label="$t('phone')"
-                      :placeholder="user.phone || $t('phone')"
-                    />
+                        class="status"
+                        v-show="isMobile == false"
+                        id="status-phone"
+                        @click="openPhoneVerification"
+                      >
+                        <div :class="'ic ic_' + phoneStatus.icon"></div>
+                        <p class="text-accent-1">
+                          {{ $t(phoneStatus.status) }}
+                        </p>
+                      </div>
+                      <MInputText
+                        style="width: 300px"
+                        v-show="isMobile == false"
+                        v-model="user.phone"
+                        :label="$t('phone')"
+                        :placeholder="user.phone || $t('phone')"
+                      />
                     </div>
                     <div class="d-flex d-flex-row a-c">
-                                          <div
-                      v-show="isMobile == false"
-                      class="status"
-                      id="status-email"
-                      @click="openEmailVerification"
-                    >
-                      <div :class="'ic ic_' + emailStatus.icon"></div>
-                      <p class="text-accent-1">{{ $t(emailStatus.status) }}</p>
+                      <div
+                        v-show="isMobile == false"
+                        class="status"
+                        id="status-email"
+                        @click="openEmailVerification"
+                      >
+                        <div :class="'ic ic_' + emailStatus.icon"></div>
+                        <p class="text-accent-1">
+                          {{ $t(emailStatus.status) }}
+                        </p>
+                      </div>
+                      <MInputText
+                        style="width: 300px"
+                        v-show="isMobile == false"
+                        :label="'E-Mail'"
+                        v-model="user.email"
+                        :placeholder="user.email || 'E-Mail'"
+                      />
                     </div>
                     <MInputText
-                      style="width:300px;"
-                      v-show="isMobile == false"
-                      :label="'E-Mail'"
-                      v-model="user.email"
-                      :placeholder="user.email || 'E-Mail'"
-                    />
-                    </div>
-                    <MInputText
-                      style="width:300px;"
+                      style="width: 300px"
                       :label="$t('taxID')"
                       v-model="user.card"
                       :placeholder="user.card || $t('taxID')"
@@ -277,6 +279,11 @@
                     <MInputFile
                       :formId="2"
                       v-model="passport2"
+                      :description="$t('passport2')"
+                    ></MInputFile>
+                    <MInputFile
+                      :formId="3"
+                      v-model="passport3"
                       :description="$t('passport2')"
                     ></MInputFile>
                   </div>
@@ -342,12 +349,12 @@
         </div>
       </div>
     </div>
-    <notifications  group="settings" position="top right" />
+    <notifications group="settings" position="top right" />
     <MModal :id="'phone-verify'" v-if="isPhoneVerify">
       <MModalHead @close="closePhoneVerify" />
       <MModalBody>
         <div class="col-12" v-if="SMSTrue == false">
-          <h2 class="form-title">{{$t('smsTitle')}}</h2>
+          <h2 class="form-title">{{ $t("smsTitle") }}</h2>
 
           <MInputText
             v-model="verifyCode"
@@ -365,16 +372,23 @@
         </div>
         <div class="col-12" v-if="SMSTrue == true">
           <div class="ic ic_check"></div>
-          <p class="text-accent-1">{{$t('smsVerified')}}</p>
+          <p class="text-accent-1">{{ $t("smsVerified") }}</p>
         </div>
       </MModalBody>
     </MModal>
     <MModal :id="'email-veification'" v-if="isEmailVerify">
       <MModalHead @close="closeMailVerify" />
       <MModalBody>
-        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          "
+        >
           <div class="ic ic_mail"></div>
-          <p class="text-accent">{{$t('MailSent')}}</p>
+          <p class="text-accent">{{ $t("MailSent") }}</p>
         </div>
       </MModalBody>
     </MModal>
@@ -397,9 +411,9 @@ import MModalHead from "../../components/UI/modal/m-modal-head";
 import MModalBody from "../../components/UI/modal/m-modal-body";
 
 export default {
-   metaInfo() {
-      return {title: this.$t('pSettings')}
-    },
+  metaInfo() {
+    return { title: this.$t("pSettings") };
+  },
   components: {
     MInputText,
     MTabs,
@@ -453,18 +467,23 @@ export default {
       //pic data
       passport1: null,
       passport2: null,
+      passport3: null,
 
       previewPassport1: null,
       previewPassport2: null,
+      previewPassport3: null,
 
       previewPassport1Value: null,
       previewPassport2Value: null,
+      previewPassport3Value: null,
 
       passportData1: null,
       passportData2: null,
+      passportData3: null,
 
       uploadPassport1: null,
       uploadPassport2: null,
+      uploadPassport3: null,
       // end
       btcAddress: null,
       MNPS: null,
@@ -491,19 +510,18 @@ export default {
     //     console.log(result)
   },
   methods: {
-     reloadInstance(url,state){
+    reloadInstance(url, state) {
       let options = {
         url: url,
-        method: "get"
-      }
+        method: "get",
+      };
 
-      this.$http(options)
-      .then((res)=>{
-        this.$store.commit(state, res.data)
-      })
+      this.$http(options).then((res) => {
+        this.$store.commit(state, res.data);
+      });
     },
-    closeMailVerify(){
-      this.$store.commit("IS_EMAIL", false)
+    closeMailVerify() {
+      this.$store.commit("IS_EMAIL", false);
     },
     previewAvatar(event) {
       this.$emit("input", event.target.files[0]);
@@ -573,6 +591,7 @@ export default {
       let body = {
         passport_1: this.passport_1,
         passport_2: this.passport_2,
+        passport_3: this.passport_3,
       };
 
       let options = {
@@ -585,7 +604,7 @@ export default {
         .then((res) => {
           let getUser = {
             url: `users/getUser/${this.user.id}`,
-            method: "get"
+            method: "get",
           };
 
           this.$http(getUser).then((res) => {
@@ -593,12 +612,14 @@ export default {
           });
           this.$store.commit("SAVE_PASSPORT_1", this.passport_1);
           this.$store.commit("SAVE_PASSPORT_2", this.passport_2);
+          this.$store.commit("SAVE_PASSPORT_3", this.passport_3);
           this.$notify({
             group: "settings",
             type: "success",
             title: this.$t("successTitle"),
             text: this.$t("passportSavedText"),
           });
+          console.log(res)
         })
         .catch((err) => {
           this.$notify({
@@ -617,10 +638,10 @@ export default {
       let options = {
         url: `users/setPassword/${this.repeatPassword}/${this.user.id}`,
         method: "patch",
-        headers:{
-          'Content-Type':'x-www-form-url-encoded'
-        }
-};
+        headers: {
+          "Content-Type": "x-www-form-url-encoded",
+        },
+      };
 
       this.$http(options)
         .then((res) => {
@@ -702,23 +723,21 @@ export default {
     },
     openEmailVerification() {
       if (this.emailStatus.icon == "danger") {
-        this.$store.commit("IS_EMAIL",true)
+        this.$store.commit("IS_EMAIL", true);
 
         let options = {
           url: `mail/send/confirm/${this.user.email}`,
-          method:"get",
-          headers:{
-            'Content-Type':'x-www-form-urlencoded'
-          }
-        }
+          method: "get",
+          headers: {
+            "Content-Type": "x-www-form-urlencoded",
+          },
+        };
 
-        this.$http(options)
-        .then((res)=>{
-          console.log(res)
-})
+        this.$http(options).then((res) => {
+          console.log(res);
+        });
       }
       if (this.emailStatus.icon == "check") {
-        
       }
     },
     openPhoneVerification() {
@@ -735,12 +754,12 @@ export default {
         };
 
         this.$http(options)
-        .then((res) => {
-          this.$store.commit("IS_PHONE", true);
-        })
-        .then(()=>{
-          this.reloadInstance(`users/getUser/${this.user.id}`,'SAVE_USER');
-        })
+          .then((res) => {
+            this.$store.commit("IS_PHONE", true);
+          })
+          .then(() => {
+            this.reloadInstance(`users/getUser/${this.user.id}`, "SAVE_USER");
+          });
       }
       if (this.phoneStatus.icon == "check") {
       }
@@ -796,6 +815,7 @@ export default {
     ...mapState([
       "passport_1",
       "passport_2",
+      "passport_3",
       "isPhoneVerify",
       "isEmailVerify",
       "isMobile",
@@ -814,8 +834,7 @@ export default {
     checkEmail() {
       if (this.user.isEmailVerified == null || this.user.isEmailVerified == 0) {
         this.emailStatus.icon = "danger";
-        this.emailStatus.status =
-          "mailWasNotVerified";
+        this.emailStatus.status = "mailWasNotVerified";
       }
 
       if (this.user.isEmailVerified == 1) {

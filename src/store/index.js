@@ -39,6 +39,7 @@ export default new Vuex.Store({
     showWrong: false,
     passport_1: null,
     passport_2: null,
+    passport_3: null,
     isMobile: false,
     isLoading: true,
     investings: [],
@@ -188,6 +189,9 @@ export default new Vuex.Store({
     },
     SAVE_PASSPORT_2(state, passport2) {
       state.passport_2 = passport2
+    },
+    SAVE_PASSPORT_3(state, passport3) {
+      state.passport_3 = passport3
     },
     IS_MOBILE(state, isMobile) {
       state.isMobile = isMobile
