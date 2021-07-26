@@ -38,7 +38,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: ()=>import('../views/Home.vue'),
+    component: ()=>import('../views/ErrorPage.vue'),
     //only temporary purposes
     // component: ()=>import('../views/ErrorPage.vue')
   },
