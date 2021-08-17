@@ -38,9 +38,9 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: ()=>import('../views/ErrorPage.vue'),
+    // component: ()=>import('../views/ErrorPage.vue'),
     //only temporary purposes
-    // component: ()=>import('../views/ErrorPage.vue')
+    component: ()=>import('../views/Home.vue')
   },
   {
     path:'/emailVerification/:encodedEmail',
@@ -96,7 +96,6 @@ const routes = [
   },
   {
     path: '/me',
-    redirect: '/me/profile',
     name: 'UserWrapper',
     component: ()=>import('../views/Panel/Wrapper.vue'),
     props: true,  

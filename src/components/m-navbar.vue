@@ -640,9 +640,10 @@ export default {
     ]),
     getListOfNotifications(){
       let nots = this.notifications
-      let msg =  parseInt(this.msg_counter.result)
+      let msg = this.msg_counter.result
       let not = nots.filter(i=>i.type == 1).length
-      console.log('Notification all:', msg+not)
+      
+
       return msg + not
     },
     filteredItems() {
@@ -675,7 +676,7 @@ export default {
       }
     },
   },
-  mounted() {
+ async mounted() {
     this.lang = JSON.parse(localStorage.locale)
     let options = {
       url: "projects",
@@ -686,9 +687,13 @@ export default {
       this.dataList = res.data;
     });
 
-    this.getNots()
-    this.getMessages()
-    this.getMessagesCounter()
+    if(this.user != {}){
+          await this.getNots()
+    await this.getMessages()
+    
+   await this.getMessagesCounter()
+    }
+
   },
 };
 </script>
