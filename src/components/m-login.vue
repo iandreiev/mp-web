@@ -18,9 +18,11 @@
             :placeholder="$t('type') + $t('iPassword')"
             :id="'password'"
           />
-          <small class="text-danger">{{$t(errText)}}</small>
+          <small class="text-danger">{{ $t(errText) }}</small>
           <div class="reset-password">
-            <MButton :btnClass="'btn btn-flat'" @click="openRecovery">{{$t('forgetPassword')}}</MButton>
+            <MButton :btnClass="'btn btn-flat'" @click="openRecovery">{{
+              $t("forgetPassword")
+            }}</MButton>
           </div>
         </div>
       </MModalBody>
@@ -28,7 +30,13 @@
         <MButton :btnClass="'btn btn-flat'" @click="openRegister">{{
           $t("RegisterTitle")
         }}</MButton>
-                <button @click="toProfile()" :disabled="password == null" class="btn btn-regular">{{$t('auth')}}</button>
+        <button
+          @click="toProfile()"
+          :disabled="password == null"
+          class="btn btn-regular"
+        >
+          {{ $t("auth") }}
+        </button>
 
         <!-- <MButton :btnClass="'btn-o btn-o-regular'" v-if="isMobile == false" @click="gAuth">{{$t('google')}}</MButton> -->
       </MModalFooter>
@@ -64,16 +72,16 @@
     </MModal>
 
     <MModal :id="'mail-sent'" v-if="isMailSent">
-        <MModalHead @close="closeMailSent" />
-        <MModalBody>
-            <div class="col-12 mail-sent">
-                <h2 class="form-title">{{$t('RecoveryTitle')}}</h2>
-                <div class="ic ic_mail"></div>
-                <p class="text-accent-1">
-                    {{$t('mailSent')}}
-                </p>
-            </div>
-        </MModalBody>
+      <MModalHead @close="closeMailSent" />
+      <MModalBody>
+        <div class="col-12 mail-sent">
+          <h2 class="form-title">{{ $t("RecoveryTitle") }}</h2>
+          <div class="ic ic_mail"></div>
+          <p class="text-accent-1">
+            {{ $t("mailSent") }}
+          </p>
+        </div>
+      </MModalBody>
     </MModal>
   </div>
 </template>
@@ -111,8 +119,8 @@ export default {
       email: null,
       password: null,
       validated: 0,
-      error:false,
-      errText:''
+      error: false,
+      errText: "",
     };
   },
   methods: {
@@ -126,36 +134,35 @@ export default {
     closeLogin() {
       this.$store.commit("SHOW_LOGIN", false);
     },
-    sendRecoveryEmail(){
-        let options = {
-            url: `mail/send/reset/${this.email}`,
-            method: "get",
-            headers:{
-                'Content-Type':'x-www-form-urlencoded'
-            }
-        }
-        this.$http(options)
-        .then((res)=>{
-        this.$store.commit("IS_MAIL_SENT",true)
-        setTimeout(()=>{
-            this.$store.commit("IS_MAIL_SENT",false)
-            this.$store.commit("IS_RESET",false)
-        },2000)
+    sendRecoveryEmail() {
+      let options = {
+        url: `mail/send/reset/${this.email}`,
+        method: "get",
+        headers: {
+          "Content-Type": "x-www-form-urlencoded",
+        },
+      };
+      this.$http(options)
+        .then((res) => {
+          this.$store.commit("IS_MAIL_SENT", true);
+          setTimeout(() => {
+            this.$store.commit("IS_MAIL_SENT", false);
+            this.$store.commit("IS_RESET", false);
+          }, 2000);
         })
-        .catch((err)=>{
-            alert(err)
-        })
-        
+        .catch((err) => {
+          alert(err);
+        });
     },
-    closeRecovery(){
-        this.$store.commit("IS_RESET",false)
+    closeRecovery() {
+      this.$store.commit("IS_RESET", false);
     },
-    openRecovery(){
-        this.$store.commit("SHOW_LOGIN",false)
-        this.$store.commit("IS_RESET",true)
+    openRecovery() {
+      this.$store.commit("SHOW_LOGIN", false);
+      this.$store.commit("IS_RESET", true);
     },
-    closeMailSent(){
-        this.$store.commit("IS_MAIL_SENT",false)
+    closeMailSent() {
+      this.$store.commit("IS_MAIL_SENT", false);
     },
     toProfile() {
       let form = {
@@ -170,46 +177,57 @@ export default {
       this.$http(options)
         .then((res) => {
           let data = res.data;
-          if (Object.keys(data).length > 0) {
-            this.$store.commit("SAVE_USER", res.data);
-            let getWallet = {
-              url: `/users/${res.data.id}/wallet`,
-              method: "get",
-            };
 
-            this.$http(getWallet)
-              .then((res) => {
-                this.$store.commit("SAVE_USER_WALLET", res.data);
-                this.$store.commit("SHOW_LOGIN", false);
-                
-              })
-              .catch((err) => {});
+          if (data.role != 3) {
+            if (Object.keys(data).length > 0) {
+              this.$store.commit("SAVE_USER", res.data);
+              let getWallet = {
+                url: `/users/${res.data.id}/wallet`,
+                method: "get",
+              };
 
-              setTimeout(()=>{
-                      this.$router.push({ name: "Profile" })
+              this.$http(getWallet)
+                .then((res) => {
+                  this.$store.commit("SAVE_USER_WALLET", res.data);
+                  this.$store.commit("SHOW_LOGIN", false);
+                })
+                .catch((err) => {});
 
-        window.location.reload()
+              setTimeout(() => {
+                this.$router.push({ name: "Profile" });
 
-              },1000)
-          } else {
-            this.error = true
-            this.errText = 'passFalse'
+                window.location.reload();
+              }, 1000);
+            } else {
+              this.error = true;
+              this.errText = "passFalse";
+            }
+          }
+          if (data.role == 3) {
+            alert(
+              "Вы нарушили правила сервиса Ваш аккаунт заблокирован. По всем вопросам обращаться к администрации сервиса"
+            );
           }
         })
         .catch((err) => {
           let response = err.response.status;
 
           if (response == 500) {
-           this.err = true 
-           this.errText = 'LoginPassCompare'
+            this.err = true;
+            this.errText = "LoginPassCompare";
           }
         });
-
-      
     },
   },
   computed: {
-    ...mapState(["showLogin", "isMobile", "isMailSent","showRegister", "showWrong", "isReset"]),
+    ...mapState([
+      "showLogin",
+      "isMobile",
+      "isMailSent",
+      "showRegister",
+      "showWrong",
+      "isReset",
+    ]),
   },
 };
 </script>

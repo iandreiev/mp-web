@@ -75,6 +75,26 @@ export default {
     afterEnter(element) {
       element.style.height = "auto";
     },
+    checkIfUserBanned(){
+      let options = {
+        url: `users/${this.$store.state.user.id}`,
+        method:'get'
+      }
+
+      this.$http(options)
+      .then(res=>{
+        let data = res.data
+        if(data.role != 3){
+          this.$store.commit('SAVE_USER',res.data)
+        }
+        if(data.role == 3){
+          this.$store.commit('logout')
+          alert('Вы нарушили правила сервиса Ваш аккаунт заблокирован. По всем вопросам обращаться к администрации сервиса')
+          this.$router.push({name: 'Home'})
+        }
+      })
+
+    }
   },
   created() {
     if (screen.width <= 760) {
@@ -84,14 +104,20 @@ export default {
     }
   },
   computed: {
-    ...mapState(["showLangs", "setup", "accessToken"]),
+    ...mapState(["showLangs", "setup", "accessToken", "auth"]),
   },
   watch: {},
   mounted() {
     this.$store.dispatch("getUserIP");
     this.$i18n.locale = this.locale;
     this.getSetup();
-  },
+
+    if(this.auth == true){
+          setInterval(()=>{
+      this.checkIfUserBanned()
+    },30*1000)
+    }
+},
 };
 </script>
 
