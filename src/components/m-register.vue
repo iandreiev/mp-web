@@ -11,7 +11,7 @@
                     <MInputText v-model="form.name" :label="'LAbel'" :placeholder="$t('type')+ $t('iName')" :id="'name'" />
                     <MInputText v-model="form.surname" :label="'LAbel'" :placeholder="$t('type')+ $t('iSurname')" :id="'surname'" />
                     <MInputPassword v-model="form.password" :label="'Password'" :placeholder="$t('type')+ $t('iPassword')" :id="'password'" />
-                    <MInputPassword v-model.lazy="form.repeatPassword" :label="'Password'" :placeholder="$t('repeatPassword')" :id="'password'" />
+                    <MInputPassword v-model.lazy="form.repeatPassword" :label="'Password'" :placeholder="$t('repeatPassword')" :id="'password-repeat'" />
                         <small v-if="notSamePasswords" class="text-danger">{{ $t("passDontMatch") }}</small>
                     
                     <transition name="hint" appear>
@@ -43,7 +43,6 @@
             </MModalFooter>
         </MModal>
 
-        <MLogin />
 </div>
 </template>
 
@@ -52,7 +51,6 @@ import MModal from "../components/UI/modal/m-modal"
 import MModalHead from "../components/UI/modal/m-modal-head"
 import MModalBody from "../components/UI/modal/m-modal-body"
 import MModalFooter from "../components/UI/modal/m-modal-footer"
-import MLogin from "../components/m-login"
 import MButton from "../components/UI/m-button"
 import MInputText from "../components/UI/form/m-input-text"
 import MInputPassword from "../components/UI/form/m-input-password"
@@ -67,7 +65,6 @@ export default {
         MButton,
         MInputText,
         MInputPassword,
-        MLogin,
         MInputCheckbox
     },
 

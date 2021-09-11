@@ -223,9 +223,8 @@ export default {
   },
   computed: mapState(["history"]),
   mounted() {
-    let URL = "https://us-central1-monopoly-life.cloudfunctions.net/app/";
     let Logs = "logs/";
-    let uID = this.user.id;
+    let uID = this.user.userID;
 
     let getLogs = {
       url: `${Logs + uID}`,

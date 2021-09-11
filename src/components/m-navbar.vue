@@ -555,72 +555,14 @@ export default {
       if (!this.kword) return;
       this.highlight = (this.highlight + 1) % this.filteredItems.length;
     },
-    gAuth() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      const BASEURL =
-        "https://us-central1-monopoly-life.cloudfunctions.net/app";
-      const USERS = "/users";
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((res) => {
-          (this.email = res.user.email), (this.username = res.user.displayName);
-          this.name = res.additionalUserInfo.profile.given_name;
-          this.surname = res.additionalUserInfo.profile.family_name;
-          this.avatar = res.additionalUserInfo.profile.picture;
-          this.locale = res.additionalUserInfo.profile.locale;
-          this.token = res.credential.idToken;
-
-          let body = {
-            username: this.username,
-            email: this.email,
-            name: this.name,
-            surname: this.surname,
-            avatar: this.avatar,
-            locale: this.locale,
-            token: this.token,
-            password: this.token,
-            isVerified: false,
-            isEmailVerified: true,
-            isPhoneVerified: false,
-          };
-          let access = {
-            url: BASEURL + USERS,
-            method: "post",
-            data: body,
-          };
-
-          this.$http(access)
-            .then((res) => {
-              this.$store.commit("SAVE_USER", res.data);
-
-              let getWallet = {
-                url: `${BASEURL + "/users/" + res.data.id + "/wallet"}`,
-                method: "get",
-              };
-
-              this.$http(getWallet)
-                .then((res) => {
-                  this.$store.commit("SAVE_USER_WALLET", res.data);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-              this.$router.push({ name: "UserWrapper" });
-            })
-            .catch((err) => {
-              this.error = err;
-            });
-        });
-    },
     getMessages(){
-          this.auth == true ? this.$store.dispatch('getUserMsgs', this.user.id) : ''
+          this.auth == true ? this.$store.dispatch('getUserMsgs', this.$store.state.user.userID) : ''
     },
         getMessagesCounter(){
-          this.auth == true ? this.$store.dispatch('getUserMsgsCount', this.user.id) : ''
+          this.auth == true ? this.$store.dispatch('getUserMsgsCount', this.$store.state.user.userID) : ''
     },
     getNots(){
-        this.auth == true ? this.$store.dispatch('getUserNots', this.user.id) : console.log('login first')
+        this.auth == true ? this.$store.dispatch('getUserNots', this.$store.state.user.userID) : console.log('login first')
     }
   },
   computed: {
@@ -693,6 +635,7 @@ export default {
     
    await this.getMessagesCounter()
     }
+
 
   },
 };

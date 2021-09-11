@@ -149,7 +149,6 @@ methods:{
     }
 },
 mounted(){
-      let URL = "https://us-central1-monopoly-life.cloudfunctions.net/app/"
     let Logs = "logs/item/"
     let id = this.id
 

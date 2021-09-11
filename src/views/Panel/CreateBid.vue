@@ -251,7 +251,7 @@ export default {
               projectId: this.projectId,
               buyerId: this.buyerId,
               shareSize: this.shareSize,
-              userID: this.user.id
+              userID: this.user.userID
           }
       
       let options = {

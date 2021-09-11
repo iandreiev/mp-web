@@ -5,13 +5,17 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import "./assets/scss/common.scss"
+
+import "./assets/js/libs.min.js"
 import firebase from "firebase"
 import Notifications from 'vue-notification'
 import VueMeta from 'vue-meta'
 import i18n from './i18n'
 import VueCarousel from "vue-carousel"
 import vClickOutside from 'v-click-outside'
+import VueAwesomeSwiper from "vue-awesome-swiper";
 
+Vue.use(VueAwesomeSwiper);
 
 import axios from "axios"
 import VueMoment from 'vue-moment';

@@ -314,7 +314,7 @@ export default {
         method: "patch",
       };
       let getNotify = {
-        url: `${"notifications/user/" + this.user.id}`,
+        url: `${"notifications/user/" + this.$store.state.user.userID}`,
         method: "get",
       };
 
@@ -328,7 +328,7 @@ export default {
             });
           })
           .catch((err) => {
-            console.error("Піймав на вила");
+            console.error(err);
           });
       }
     },
@@ -351,12 +351,12 @@ export default {
     }, 5000);
 
     let getNotify = {
-      url: `${"notifications/user/" + this.user.id}`,
+      url: `${"notifications/user/" + this.$store.state.user.userID}`,
       method: "get",
     };
 
     let getMsg = {
-      url: `${"chat/" + this.user.id}`,
+      url: `${"chat/" + this.$store.state.user.userID}`,
       method: "get",
     };
 

@@ -91,7 +91,7 @@
               <div class="row">
                 <div class="user-meta-item">
                   <p class="text-accent-1">ID:</p>
-                  <p class="text-dark">{{ user.id }}</p>
+                  <p class="text-dark">{{ user.userID }}</p>
                 </div>
                 <div class="user-meta-item">
                   <p class="text-accent-1">{{ $t("userStatus") }}</p>
@@ -207,7 +207,7 @@ export default {
   },
   mounted() {
     let getUserStats = {
-      url: `users/stats/${this.user.id}`,
+      url: `users/stats/${this.user.userID}`,
       method: "get",
     };
 
@@ -217,7 +217,7 @@ export default {
     };
 
     let getReturns = {
-      url: `users/returns/${this.user.id}`,
+      url: `users/returns/${this.user.userID}`,
       method: "get",
     };
 

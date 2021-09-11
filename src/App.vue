@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition
-      name="fade"
+    name="fade"
       mode="out-in"
       @beforeLeave="beforeLeave"
       @enter="enter"
@@ -55,7 +55,6 @@ export default {
 
       axios(options)
         .then((res) => {
-          console.log("ACCESS_TOKEN_GRANTED");
           this.$store.commit("REFRESH_TOKEN", res.data.access_token);
         })
         .catch((err) => console.log(err));
@@ -77,7 +76,7 @@ export default {
     },
     checkIfUserBanned(){
       let options = {
-        url: `users/${this.$store.state.user.id}`,
+        url: `users/${this.$store.state.user.userID}`,
         method:'get'
       }
 
@@ -115,6 +114,7 @@ export default {
     if(this.auth == true){
           setInterval(()=>{
       this.checkIfUserBanned()
+      
     },30*1000)
     }
 },

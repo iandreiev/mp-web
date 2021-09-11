@@ -25,26 +25,31 @@
                 "
               ></span>
               <!-- <a :href="href" >{{ $t(item.title) }}</a> -->
-              {{$t(item.title)}}
-              
+              {{ $t(item.title) }}
             </li>
           </router-link>
         </ul>
       </div>
-<!-- Dropdown start -->
+      <!-- Dropdown start -->
 
       <div class="dropdown-nav" @click="showMiniNav = !showMiniNav">
         <div class="dropdown-nav-choose-current">
           <div class="dropdown-nav-current">
-          <div :class="`ic ic_${curPage.icon}`"></div>
-          <p class="text-dark">{{$t(curPage.title)}}</p>
-        </div>
-        <div class="ic ic_arrow_down" :class="{'ic_arrow_down-active' : showMiniNav}"></div>
+            <div :class="`ic ic_${curPage.icon}`"></div>
+            <p class="text-dark">{{ $t(curPage.title) }}</p>
+          </div>
+          <div
+            class="ic ic_arrow_down"
+            :class="{ 'ic_arrow_down-active': showMiniNav }"
+          ></div>
         </div>
       </div>
-      <div class="dropdown-nav-items" :class="{'dropdown-nav-items--active':showMiniNav}">
+      <div
+        class="dropdown-nav-items"
+        :class="{ 'dropdown-nav-items--active': showMiniNav }"
+      >
         <ul>
-           <router-link
+          <router-link
             v-for="(item, index) in routes"
             :key="index"
             :to="item.path"
@@ -71,54 +76,82 @@
       <!-- Dropdown end -->
       <div class="user-card">
         <div class="user-card-heading">
-        <div class="ic-row">
+          <div class="ic-row">
             <div class="ic-arr-back"></div>
-            <p class="text-accent-1 back-text" v-on:click="toBack">{{$t('back')}}</p>
-        </div>
-        <div class="row close-msg">
+            <p class="text-accent-1 back-text" v-on:click="toBack">
+              {{ $t("back") }}
+            </p>
+          </div>
+          <div class="row close-msg">
             <div class="user-verify" v-show="chatData[0].type == 2">
-                 <div class="ic ic_check"></div>
-                       <p>{{$t('msgClosed')}}</p>
+              <div class="ic ic_check"></div>
+              <p>{{ $t("msgClosed") }}</p>
             </div>
-          <MButton :btnClass="'btn btn-regular'" v-show="chatData[0].type == 1 || chatData[0].type == 0" @click="toAppSolve">{{$t('msgClose')}}</MButton>
-
-        </div>
+            <MButton
+              :btnClass="'btn btn-regular'"
+              v-show="chatData[0].type == 1 || chatData[0].type == 0"
+              @click="toAppSolve"
+              >{{ $t("msgClose") }}</MButton
+            >
+          </div>
         </div>
         <div class="messages-section">
           <div class="messages-header">
-            <div class="messages-header-title">{{chatData[0].chatTitle}}</div>
+            <div class="messages-header-title">{{ chatData[0].chatTitle }}</div>
 
             <div class="messages-meta">
               <div class="messages-meta-item">
-                <p class="text-accent-1">{{$t('msgId')}}: {{id}}</p>
+                <p class="text-accent-1">{{ $t("msgId") }}: {{ id }}</p>
               </div>
               <div class="messages-meta-item">
-                <p class="text-accent-1">{{$t('msgStatus')}}: </p>
-                <p class="text-dark">{{chatData[0].type == 1 ? $t('open') : chatData[0].type == 2 ? $t('closed') : chatData[0].type == 0 ? "В ожидании ответа" : ""}}</p>
+                <p class="text-accent-1">{{ $t("msgStatus") }}:</p>
+                <p class="text-dark">
+                  {{
+                    chatData[0].type == 1
+                      ? $t("open")
+                      : chatData[0].type == 2
+                      ? $t("closed")
+                      : chatData[0].type == 0
+                      ? "В ожидании ответа"
+                      : ""
+                  }}
+                </p>
               </div>
             </div>
           </div>
           <div class="messages-wrapper">
-            <div class="messages-item" :class="{'toMe-item': i.userID == user.id}" v-for="i in messages" :key="i.id">
-              <div class="messages-bulb" :class="{ 'toMe': i.userID == user.id }">
+            <div
+              class="messages-item"
+              :class="{ 'toMe-item': i.userID == user.userID }"
+              v-for="i in messages"
+              :key="i.id"
+            >
+              <div class="messages-bulb" :class="{ toMe: i.userID == user.userID }">
                 {{ i.content }}
               </div>
               <div class="messages-date">
-                  <p class="text-accent-1">{{moment(i.createdAt).format('MMMM Do YYYY, h:mm:ss a')}}</p>
+                <p class="text-accent-1">
+                  {{ moment(i.createdAt).format("MMMM Do YYYY, h:mm:ss a") }}
+                </p>
               </div>
               <!-- <div class="messages-avatar">
                   <img :src="i.avatar" width="32" alt="">
               </div> -->
             </div>
           </div>
-          <div class="messages-footer" v-show="chatData[0].type == 1 || chatData[0].type == 0">
-            <textarea 
+          <div
+            class="messages-footer"
+            v-show="chatData[0].type == 1 || chatData[0].type == 0"
+          >
+            <textarea
               name="typeMessage"
               id="typeMessage"
               :placeholder="$t('msgType')"
               v-model="msg"
             ></textarea>
-            <MButton :btnClass="'btn btn-regular'" @click="sendMsg">{{$t('msgSend')}}</MButton>
+            <MButton :btnClass="'btn btn-regular'" @click="sendMsg">{{
+              $t("msgSend")
+            }}</MButton>
           </div>
         </div>
       </div>
@@ -127,14 +160,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 import MButton from "../../components/UI/m-button";
-var moment = require("moment")
+var moment = require("moment");
 
 export default {
-   metaInfo() {
-      return {title: this.$t('pMessages')}
-    },
+  metaInfo() {
+    return { title: this.$t("pMessages") };
+  },
   components: {
     MButton,
   },
@@ -153,101 +186,94 @@ export default {
   },
   data() {
     return {
-        appSolved: false,
-        showBtn: true,
+      appSolved: false,
+      showBtn: true,
       moment: moment,
-        status: 'Открыта',
-        showMiniNav: false,
-        msg:null,
-      curPage:{
-        icon: 'chat',
-        title: 'Messages'
+      status: "Открыта",
+      showMiniNav: false,
+      msg: null,
+      curPage: {
+        icon: "chat",
+        title: "Messages",
       },
       messages: [],
-      chatData: []
+      chatData: [],
+      notifCounter: undefined
     };
   },
   methods: {
-      toAppSolve(){
-          
-          let options = {
-            url: `${"chat/setType/"+this.id}`,
-            method:"patch"
-          }
+    toAppSolve() {
+      let options = {
+        url: `${"chat/setType/" + this.id}`,
+        method: "patch",
+      };
 
-          let reloadChat = {
-            url: `${"chat/current/"+this.id}`,
-            method: "get"
-          }
+      let reloadChat = {
+        url: `${"chat/current/" + this.id}`,
+        method: "get",
+      };
 
-          this.$http(options)
-          .then((res)=>{
-            console.log(res.data)
-            this.$http(reloadChat)
-            .then((res)=>{
-              this.chatData = res.data
-            })
-          })
-
-      },
-      sendMsg(){
-
-        let dataMsg = {
-          content: this.msg,
-          userID:  this.user.id, 
-          fromID: 77, 
-          chatID: this.id,
-          type: 1,
-          createdAt: new Date().toISOString().slice(0, 19).replace('T', ' ')
-        }
- 
-        let options = {
-          url: `${"msg"}`,
-          method: "post",
-          data: dataMsg
-        }
-
-        let reload = {
-           url: "msg/user/chat/" + this.id,
-      method: "get"
-        }
-
-        this.$http(options)
-        .then((res)=>{
-          
-          this.$http(reload)
-          .then((res)=>{
-            this.messages = res.data
-
-            this.msg = null
-          })
-        })
-
-      },
-      toBack(){
-          this.$router.go(-1)
-      },
-      showNavItems(){
-      this.showMiniNav = !this.showMiniNav
+      this.$http(options).then((res) => {
+        console.log(res.data);
+        this.$http(reloadChat).then((res) => {
+          this.chatData = res.data;
+        });
+      });
     },
-          setNotifType(id,type) {
+    sendMsg() {
+      let dataMsg = {
+        content: this.msg,
+        userID: this.user.userID,
+        fromID: 77,
+        chatID: this.id,
+        type: 1,
+        createdAt: new Date().toISOString().slice(0, 19).replace("T", " "),
+      };
+
+      let options = {
+        url: `${"msg"}`,
+        method: "post",
+        data: dataMsg,
+      };
+
+      let reload = {
+        url: "msg/user/chat/" + this.id,
+        method: "get",
+      };
+
+      this.$http(options).then((res) => {
+        this.$http(reload).then((res) => {
+          this.messages = res.data;
+
+          this.msg = null;
+        });
+      });
+    },
+    toBack() {
+      this.$router.go(-1);
+    },
+    showNavItems() {
+      this.showMiniNav = !this.showMiniNav;
+    },
+    setNotifType(id, type) {
       let options = {
         url: `msg/hide/${id}`,
         method: "patch",
       };
       let getNotify = {
-        url: `${"msg/user/" + this.user.id}`,
+        url: `${"msg/user/" + this.$store.state.user.userID}`,
         method: "get",
       };
 
       if (type == 0) {
-        
       } else {
         this.$http(options)
-          .then((res) => {})
+          .then((res) => {
+            
+          })
           .then(() => {
             this.$http(getNotify).then((res) => {
-              this.$store.dispatch('getUserMsgsCount', this.user.id)
+              this.$store.dispatch("getUserMsgsCount", this.user.userID);
             });
           })
           .catch((err) => {
@@ -256,43 +282,45 @@ export default {
       }
     },
   },
-  computed:{
+  computed: {
     ...mapState(["locale", "user"]),
   },
-  mounted(){
-        setTimeout(() => {
+  mounted() {
+    this.notifCounter = setTimeout(() => {
       let notifs = this.messages;
 
       notifs.forEach((i) => {
         this.setNotifType(i.id, i.type);
       });
-    }, 200);
+
+    }, 2000);
 
     let options = {
       url: `${"msg/user/chat/" + this.id}`,
-      method: "get"
-    }
+      method: "get",
+    };
 
     let getChat = {
-      url: `${"chat/current/"+this.id}`,
-            method: "get"
-    }
+      url: `${"chat/current/" + this.id}`,
+      method: "get",
+    };
 
-    this.$http(getChat)
-    .then((res)=>{
-      this.chatData = res.data
-    })
-    this.$http(options)
-    .then((res)=>{
-      this.messages = res.data
-    })
-    setInterval(()=>{
-      console.log('get data in 60sec')
-          this.$http(options)
-    .then((res)=>{
-      this.messages = res.data
-    })
-    },30000)
+    this.$http(getChat).then((res) => {
+      this.chatData = res.data;
+    });
+    this.$http(options).then((res) => {
+      this.messages = res.data;
+    });
+
+
+    setInterval(() => {
+      this.$http(options).then((res) => {
+        this.messages = res.data;
+      });
+    }, 30000);
+  },
+  destroyed(){
+    clearInterval(this.notifCounter)
   }
 };
 </script>

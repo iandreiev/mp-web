@@ -30,10 +30,10 @@ export default {
   },
   methods:{
     getMessages(){
-      this.$store.dispatch('getUserMsgs', this.user.id)
+      this.$store.dispatch('getUserMsgs', this.user.userID)
     },
     getNots(){
-      this.$store.dispatch('getUserNots', this.user.id)
+      this.$store.dispatch('getUserNots', this.user.userID)
     }
   },
   mounted(){

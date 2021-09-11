@@ -122,18 +122,21 @@ export default {
   methods:{
     getNew(){
       let getNotify = {
-        url: `${"notifications/user/" + this.user.id}`,
+        url: `${"notifications/user/" + this.$store.state.user.userID}`,
         method: "get"
     }
 
     let getMsg = {
-        url: `${"chat/" + this.user.id}`,
+        url: `${"chat/" + this.user.userID}`,
         method: "get"
     }
 
     this.$http(getNotify)
     .then((res)=>{
         this.$store.commit("SAVE_NOTIFICATIONS", res.data)
+    })
+    .catch((err)=>{
+      console.log(err)
     })
 
     this.$http(getMsg)
