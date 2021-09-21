@@ -40,7 +40,7 @@ const routes = [
     name: 'Home',
     // component: ()=>import('../views/ErrorPage.vue'),
     //only temporary purposes
-    component: ()=>import('../views/NewHome.vue')
+    component: ()=>import('../views/Redirect.vue'),
   },
   {
     path:'/emailVerification/:encodedEmail',
