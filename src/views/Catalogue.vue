@@ -1,19 +1,24 @@
 <template>
   <div id="catalogue-page">
-      <MNavbar />
+    <MNavbar />
     <MSection :id="'catalogue-inner'">
-        <h1 class="text-heading">{{$t('projects')}}</h1>
-        
-           <div class="categories-wrapper">
+      <h1 class="text-heading">{{ $t('projects') }}</h1>
+
+      <div class="categories-wrapper">
         <ul class="categories-items">
-          <li class="categories-item" v-for="item in categories" :key="item.id" @click="toCat(item.id)">{{locale == 'en-gb' ? item.title_en : locale == 'ru' ? item.title : locale == 'zh-cn' ? item.title_ch : "Unknown"}}</li>
+          <li
+            class="categories-item"
+            v-for="item in categories"
+            :key="item.id"
+            @click="toCat(item.id)"
+          >{{ locale == 'en-gb' ? item.title_en : locale == 'ru' ? item.title : locale == 'zh-cn' ? item.title_ch : "Unknown" }}</li>
         </ul>
       </div>
 
-        <div class="row catalogue-column">
-            <MProjectCard
+      <div class="row catalogue-column">
+        <MProjectCard
           v-for="i in projects"
-:key="i.id"
+          :key="i.id"
           :id="i.id"
           :title="i.title"
           :title_en="i.title_en"
@@ -35,10 +40,9 @@
           :return="i.return"
           :cost="i.cost"
         />
-        </div>
+      </div>
     </MSection>
     <MFooter />
-
   </div>
 </template>
 
@@ -50,58 +54,97 @@ import MFooter from "../components/m-footer";
 import MProjectCard from "../components/m-project-card"
 
 import axios from "axios"
-import {mapState} from "vuex"
+import { mapState } from "vuex"
 
 
 export default {
-         metaInfo() {
-      return {title: this.$t('Projects')}
+  metaInfo() {
+    return { title: this.$t('Projects') }
+  },
+  components: {
+    MSection,
+    MNavbar,
+    MButton,
+    MFooter,
+    MProjectCard
+  },
+  methods: {
+    updatePaused(event) {
+      this.videoElement = event.target;
+      this.paused = event.target.paused;
     },
-    components:{
-        MSection,
-        MNavbar,
-        MButton,
-        MFooter,
-        MProjectCard
+    play() {
+      this.videoElement.play();
     },
-    data(){
-        return{
-                 
-        }
-    },
-    computed:{
-      ...mapState(["projects","categories","locale", "isMobile"]),
-    },
-    methods:{
-       toCat(obj){
-      this.$router.push({name: 'CategoryPageProjects', params:{id:obj}})
-    },
-    },
-    mounted(){
-// let getProjects = {
-//       url: "projects",
-//       method: "get"
-//     }
+    pause() {
+      this.videoElement.pause();
 
-//     let getCategories = {
-//       url: "categories",
-//       method:"get"
-//     }
+    },
+    setCat(id) {
+      let data = this.categories
 
-//     axios(getProjects)
-//     .then((res)=>{
-//       this.projects = res.data
-//     })
-//      axios(getCategories)
-//     .then((res)=>{
-//       this.cats = res.data
-//     })
+      return data.forEach(function (item) {
+        if (id == item.id) {
+          return item.title
+        } else { }
+      })
+    },
+    toProjects() {
+      this.$router.push({ name: 'Projects' })
+    },
+    toCat(obj) {
+      this.$router.push({ name: 'CategoryPageProjects', params: { id: obj } })
+    },
+    getSlides() {
+      let options = {
+        url: 'slider',
+        method: 'get'
+      }
+
+      this.$http(options)
+        .then(res => this.slider = res.data)
     }
+
+  },
+  mounted() {
+    this.getSlides()
+    let getProjects = {
+      url: "projects",
+      method: "get"
+    }
+
+    let getCategories = {
+      url: "categories",
+      method: "get"
+    }
+
+    let getSetup = {
+      url: "setup",
+      method: "get"
+    }
+
+    this.$http(getProjects)
+      .then((res) => {
+        this.$store.commit("SAVE_PROJECTS", res.data)
+
+      })
+    this.$http(getCategories)
+      .then((res) => {
+        this.$store.commit("SAVE_CATEGORIES", res.data)
+      })
+
+  },
+  computed: {
+    ...mapState(["projects", "categories", "locale", "isMobile", "setup"]),
+    playing() {
+      return !this.paused;
+    },
+  },
 }
 </script>
 
 <style scoped>
-  .text-heading{
-    text-align:center;
-  }
+.text-heading {
+  text-align: center;
+}
 </style>
