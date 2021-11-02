@@ -206,38 +206,10 @@ export default {
       videoElement:null,
       paused:null,
       lang: JSON.parse(localStorage.locale),
-      slider:[],
-      slides: [
-     
-        {
-          id: 1,
-          title: "slide1Title",
-          leading: "slide1Text",
-          image:
-            "https://firebasestorage.googleapis.com/v0/b/webfontshost.appspot.com/o/Monopoly%2Fposter-1-min.png?alt=media&token=1d8e09fa-8967-45f7-981c-eee15602f3bc",
-        },
-        {
-          id: 2,
-          title: "slide2Title",
-          leading:
-            "slide2Text",
-          image:
-            "https://firebasestorage.googleapis.com/v0/b/webfontshost.appspot.com/o/Monopoly%2Fposter-2-min.png?alt=media&token=6b801f59-c263-4a2c-86c7-ca9d264c4f6d",
-        },
-           {
-          id: 3,
-          title: `slide3Title`,
-          leading: `slide3Title`,
-          image:
-            "https://firebasestorage.googleapis.com/v0/b/webfontshost.appspot.com/o/Monopoly%2Fposter-3-min.png?alt=media&token=a6eabe14-600a-4697-acb2-05b33b0fff91",
-        },
-        
-      ],
-      
+      slider:[],      
     };
   },
   methods:{
-   
     updatePaused(event){
       this.videoElement = event.target;
       this.paused = event.target.paused;

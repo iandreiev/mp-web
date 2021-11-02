@@ -11,6 +11,7 @@
 import MLoginModal from "../components/m-login";
 import MNavbar from "../components/m-navbar";
 import MFooter from "../components/m-footer";
+import {mapState} from "vuex"
 
 export default {
   components:{
@@ -18,8 +19,18 @@ export default {
     MNavbar,
     MFooter
   },
+  computed:{
+    ...mapState(['auth'])
+  },
   mounted(){
-    this.$store.commit('SHOW_LOGIN', true)
+    
+    if(!this.auth){
+      this.$store.commit('SHOW_LOGIN', true)
+    }
+    else if(this.auth){
+      this.$store.commit('SHOW_LOGIN', false)
+
+    }
   }
 }
 </script>
