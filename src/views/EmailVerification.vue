@@ -32,7 +32,7 @@ export default {
       if (res.data.kind == "ok") {
         this.status = "Email подтверждён";
         let getUser = {
-          url: `users/getUser/${this.user.userID}`,
+          url: `users/getUser/${this.user.id}`,
           method: "get",
         };
 

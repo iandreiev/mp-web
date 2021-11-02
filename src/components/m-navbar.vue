@@ -556,13 +556,13 @@ export default {
       this.highlight = (this.highlight + 1) % this.filteredItems.length;
     },
     getMessages(){
-          this.auth == true ? this.$store.dispatch('getUserMsgs', this.$store.state.user.userID) : ''
+          this.auth == true ? this.$store.dispatch('getUserMsgs', this.$store.state.user.id) : ''
     },
         getMessagesCounter(){
-          this.auth == true ? this.$store.dispatch('getUserMsgsCount', this.$store.state.user.userID) : ''
+          this.auth == true ? this.$store.dispatch('getUserMsgsCount', this.$store.state.user.id) : ''
     },
     getNots(){
-        this.auth == true ? this.$store.dispatch('getUserNots', this.$store.state.user.userID) : console.log('login first')
+        this.auth == true ? this.$store.dispatch('getUserNots', this.$store.state.user.id) : console.log('login first')
     }
   },
   computed: {

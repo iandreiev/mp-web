@@ -475,7 +475,7 @@ export default {
     return {
       project:'',
       payData: {
-        userID: this.$store.state.user.userID,
+        userID: this.$store.state.user.id,
         projectID: this.$route.params.id,
         amount: 10,
         type: 2,

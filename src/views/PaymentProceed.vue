@@ -140,7 +140,7 @@ export default {
     sendLogs(type, action) {
       let data = {
         type: type,
-        userID: this.user.userID,
+        userID: this.user.id,
         createdAt: new Date().toISOString().slice(0, 19).replace("T", " "),
         amount: this.data.amount,
         proviso: 201,
@@ -207,7 +207,7 @@ export default {
 
         if (this.currentProduct.API_TYPE == "buy") {
           let data = {
-        userID: this.user.userID,
+        userID: this.user.id,
         type: 1,
         amount: this.data.amount,
         rate_btc: this.rateBTC,
@@ -224,7 +224,7 @@ export default {
         }
         if (this.currentProduct.API_TYPE == "increase") {
                     let data = {
-        userID: this.user.userID,
+        userID: this.user.id,
         type: 1,
         amount: this.data.amount,
         rate_btc: this.rateBTC,
@@ -240,7 +240,7 @@ export default {
         }
         if (this.currentProduct.API_TYPE == "topup") {
                     let data = {
-        userID: this.user.userID,
+        userID: this.user.id,
         type: 1,
         amount: this.data.amount,
         rate_btc: this.rateBTC,
@@ -385,7 +385,7 @@ export default {
     },
     getWallet(){
       let options = {
-        url: `users/${this.user.userID}/wallet`,
+        url: `users/${this.user.id}/wallet`,
         method:'get'
       }
 
@@ -403,7 +403,7 @@ export default {
     // reloadStates(){
     //   let data = [
     //     {
-    //       endpoint: `users/${this.user.userID}/wallet`,
+    //       endpoint: `users/${this.user.id}/wallet`,
     //       method:'get',
     //       state: 'SAVE_USER_WALLET',
     //     }

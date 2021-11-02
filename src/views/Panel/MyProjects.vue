@@ -100,7 +100,7 @@
           :return="i.return"
           :cost="i.cost"
           :userfunded="i.userfunded"
-          :userID="user.userID"
+          :userID="user.id"
                     :active="i.active"
           :type="i.type"
           :projectBrief_ch="i.projectBrief_ch"
@@ -137,7 +137,7 @@
           :return="i.return"
           :cost="i.cost"
           :userfunded="i.userfunded"
-          :userID="user.userID"
+          :userID="user.id"
           :active="i.active"
           :type="i.type"
           :projectBrief_ch="i.projectBrief_ch"
@@ -213,7 +213,7 @@ computed: {
   
 },
 mounted(){
-  let uID = this.user.userID
+  let uID = this.user.id
 
   let getProjects = {
     url: `${"users/projects/" + uID}`,

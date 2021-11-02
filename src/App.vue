@@ -76,7 +76,7 @@ export default {
     },
     checkIfUserBanned(){
       let options = {
-        url: `users/${this.$store.state.user.userID}`,
+        url: `users/${this.$store.state.user.id}`,
         method:'get'
       }
 

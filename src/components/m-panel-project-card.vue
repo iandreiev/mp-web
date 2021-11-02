@@ -458,7 +458,7 @@ export default {
         invested: this.invested,
       },
       payData: {
-        userID: this.$store.state.user.userID,
+        userID: this.$store.state.user.id,
         projectID: this.id,
         amount: 10,
         type: 2,

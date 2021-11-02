@@ -224,7 +224,7 @@ export default {
   computed: mapState(["history"]),
   mounted() {
     let Logs = "logs/";
-    let uID = this.user.userID;
+    let uID = this.user.id;
 
     let getLogs = {
       url: `${Logs + uID}`,
