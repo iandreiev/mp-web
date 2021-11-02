@@ -122,12 +122,12 @@ export default {
   methods:{
     getNew(){
       let getNotify = {
-        url: `${"notifications/user/" + this.$store.state.user.userID}`,
+        url: `${"notifications/user/" + this.$store.state.user.id}`,
         method: "get"
     }
 
     let getMsg = {
-        url: `${"chat/" + this.user.userID}`,
+        url: `${"chat/" + this.user.id}`,
         method: "get"
     }
 

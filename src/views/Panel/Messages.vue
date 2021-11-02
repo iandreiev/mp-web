@@ -314,7 +314,7 @@ export default {
         method: "patch",
       };
       let getNotify = {
-        url: `${"notifications/user/" + this.$store.state.user.userID}`,
+        url: `${"notifications/user/" + this.$store.state.user.id}`,
         method: "get",
       };
 
@@ -351,12 +351,12 @@ export default {
     }, 5000);
 
     let getNotify = {
-      url: `${"notifications/user/" + this.$store.state.user.userID}`,
+      url: `${"notifications/user/" + this.$store.state.user.id}`,
       method: "get",
     };
 
     let getMsg = {
-      url: `${"chat/" + this.$store.state.user.userID}`,
+      url: `${"chat/" + this.$store.state.user.id}`,
       method: "get",
     };
 
