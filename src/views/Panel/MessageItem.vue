@@ -122,11 +122,11 @@
           <div class="messages-wrapper">
             <div
               class="messages-item"
-              :class="{ 'toMe-item': i.userID == user.userID }"
+              :class="{ 'toMe-item': i.userID == user.id }"
               v-for="i in messages"
               :key="i.id"
             >
-              <div class="messages-bulb" :class="{ toMe: i.userID == user.userID }">
+              <div class="messages-bulb" :class="{ toMe: i.userID == user.id }">
                 {{ i.content }}
               </div>
               <div class="messages-date">
@@ -223,7 +223,7 @@ export default {
     sendMsg() {
       let dataMsg = {
         content: this.msg,
-        userID: this.user.userID,
+        userID: this.user.id,
         fromID: 77,
         chatID: this.id,
         type: 1,
@@ -261,7 +261,7 @@ export default {
         method: "patch",
       };
       let getNotify = {
-        url: `${"msg/user/" + this.$store.state.user.userID}`,
+        url: `${"msg/user/" + this.$store.state.user.id}`,
         method: "get",
       };
 
@@ -273,7 +273,7 @@ export default {
           })
           .then(() => {
             this.$http(getNotify).then((res) => {
-              this.$store.dispatch("getUserMsgsCount", this.user.userID);
+              this.$store.dispatch("getUserMsgsCount", this.user.id);
             });
           })
           .catch((err) => {

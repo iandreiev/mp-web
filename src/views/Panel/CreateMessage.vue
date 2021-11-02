@@ -149,7 +149,7 @@ export default {
       },
       msgData: {
         content: null,
-        userID: this.user.userID,
+        userID: this.user.id,
         fromID: 77,
         chatID: null,
         type: 1,
@@ -159,7 +159,7 @@ export default {
         type: 1,
         address: 77,
         chatTitle: null,
-        userID: this.user.userID,
+        userID: this.user.id,
         createdAt: new Date().toISOString().slice(0, 19).replace('T', ' ')
       },
     };
@@ -167,7 +167,7 @@ export default {
   methods: {
     getChats(){
       let options = {
-        url: `${"chat/" + this.user.userID}`,
+        url: `${"chat/" + this.user.id}`,
       method: "get",
       }
 
