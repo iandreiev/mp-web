@@ -213,15 +213,18 @@ computed: {
   
 },
 mounted(){
-  let uID = this.user.id
+  let uID = this.user.id === undefined ? this.user.userID : this.user.id === undefined ? this.user.userID : ''
 
   let getProjects = {
-    url: `${"users/projects/" + uID}`,
+    url: `users/projects/${uID}`,
     method:"get"
   }
 
+  console.log(getProjects)
+
   this.$http(getProjects)
   .then((res)=>{
+    console.log('project res:', res)
     this.$store.commit("SAVE_USER_PROJECTS", res.data)
   })
 }

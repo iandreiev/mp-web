@@ -182,10 +182,6 @@ export default {
       type: Array,
       required: true,
     },
-    user: {
-      type: Object,
-      required: false,
-    },
   },
   data() {
     return {
@@ -207,7 +203,7 @@ export default {
   },
   mounted() {
     let getUserStats = {
-      url: `users/stats/${this.user.id}`,
+      url: `users/stats/${this.userid}`,
       method: "get",
     };
 
@@ -217,7 +213,7 @@ export default {
     };
 
     let getReturns = {
-      url: `users/returns/${this.user.id}`,
+      url: `users/returns/${this.userid}`,
       method: "get",
     };
 
@@ -243,7 +239,11 @@ export default {
     this.$store.commit("IS_FIRST", true);
   },
   computed: {
-    ...mapState(["investings", "stat", "withdraws", "last", "first"]),
+    ...mapState(["user","investings", "stat", "withdraws", "last", "first"]),
+    userid(){
+      return this.user.id === undefined ? this.user.userID : this.user.id === undefined ? this.user.userID : ''
+
+    }
   },
   watch: {
     $route(to, from) {

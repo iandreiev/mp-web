@@ -107,7 +107,7 @@
             </div>
 
             <p class="wallet-meta-name">{{ user.name + " " + user.surname }}</p>
-            <p class="text-accent-1">id: {{ user.id }}</p>
+            <p class="text-accent-1">id: {{ user.userID }}</p>
             <div class="wallet-meta-status">
               <p class="text-accent-1">{{ $t("userStatus") }}</p>
               <p class="text-dark">
@@ -557,7 +557,7 @@ export default {
             };
 
             let options = {
-              url: `users/setAvatar/${this.user.id}`,
+              url: `users/setAvatar/${this.user.userID}`,
               method: "patch",
               data: body,
             };
@@ -565,7 +565,7 @@ export default {
             this.$http(options)
               .then((res) => {
                 let getUser = {
-                  url: `users/getUser/${this.user.id}`,
+                  url: `users/getUser/${this.user.userID}`,
                   method: "get",
                 };
 
@@ -595,7 +595,7 @@ export default {
       };
 
       let options = {
-        url: `users/setPassport/${this.user.id}`,
+        url: `users/setPassport/${this.user.userID}`,
         method: "patch",
         data: body,
       };
@@ -603,7 +603,7 @@ export default {
       this.$http(options)
         .then((res) => {
           let getUser = {
-            url: `users/getUser/${this.user.id}`,
+            url: `users/getUser/${this.user.userID}`,
             method: "get",
           };
 
@@ -636,7 +636,7 @@ export default {
       };
 
       let options = {
-        url: `users/setPassword/${this.repeatPassword}/${this.user.id}`,
+        url: `users/setPassword/${this.repeatPassword}/${this.user.userID}`,
         method: "patch",
         headers: {
           "Content-Type": "x-www-form-url-encoded",
@@ -648,7 +648,7 @@ export default {
           console.log(res);
 
           let getUser = {
-            url: `users/getUser/${this.user.id}`,
+            url: `users/getUser/${this.user.userID}`,
             method: "get",
           };
 
@@ -685,7 +685,7 @@ export default {
       };
 
       let options = {
-        url: `users/${this.user.id}`,
+        url: `users/${this.user.userID}`,
         method: "patch",
         data: form,
       };
@@ -693,7 +693,7 @@ export default {
       this.$http(options)
         .then((res) => {
           let getUser = {
-            url: `users/getUser/${this.user.id}`,
+            url: `users/getUser/${this.user.userID}`,
             method: "get",
           };
 
@@ -743,7 +743,7 @@ export default {
     openPhoneVerification() {
       if (this.phoneStatus.icon == "danger") {
         let body = {
-          id: this.user.id,
+          id: this.user.userID,
           phone: this.user.phone,
         };
 
@@ -758,7 +758,7 @@ export default {
             this.$store.commit("IS_PHONE", true);
           })
           .then(() => {
-            this.reloadInstance(`users/getUser/${this.user.id}`, "SAVE_USER");
+            this.reloadInstance(`users/getUser/${this.user.userID}`, "SAVE_USER");
           });
       }
       if (this.phoneStatus.icon == "check") {
@@ -776,7 +776,7 @@ export default {
         method: "post",
         data: {
           code: this.verifyCode,
-          id: this.user.id,
+          id: this.user.userID,
         },
       };
 
@@ -792,7 +792,7 @@ export default {
             this.SMSTrue = true;
 
             let getUser = {
-              url: `users/getUser/${this.user.id}`,
+              url: `users/getUser/${this.user.userID}`,
               method: "get",
             };
 

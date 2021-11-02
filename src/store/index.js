@@ -246,7 +246,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    checkId({state}) {
+   async checkId({state}) {
       let id = 0;
       if (state.user.id === undefined) {
         id = state.user.userID;
@@ -256,9 +256,9 @@ export default new Vuex.Store({
 
       return id;
     },
-    getUserNots({dispatch,commit,state},id){
+    getUserNots({commit,state},id){
       let options = {
-        url:`${"notifications/user/" + dispatch('checkId')}`,
+        url:`${"notifications/user/" + state.user.id === undefined ? state.user.userID : state.user.id === undefined ? state.user.userID : ''}`,
         method:'get'
       }
 
