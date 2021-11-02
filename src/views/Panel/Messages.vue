@@ -314,7 +314,7 @@ export default {
         method: "patch",
       };
       let getNotify = {
-        url: `${"notifications/user/" + this.$store.state.user.id}`,
+        url: `${"notifications/user/" + this.checkId}`,
         method: "get",
       };
 
@@ -340,7 +340,18 @@ export default {
       this.showMiniNav = !this.showMiniNav;
     },
   },
-  computed: mapState(["messages", "notifications"]),
+  computed: {
+    checkId() {
+      let id = 0;
+      if (this.user.id === undefined) {
+        id = this.user.userID;
+      } else if (this.user.userID === undefined) {
+        id = this.user.id;
+      }
+
+      return id;
+    },
+    ...mapState(["messages", "notifications"])},
   mounted() {
     setTimeout(() => {
       let notifs = this.notifications;
@@ -351,12 +362,12 @@ export default {
     }, 5000);
 
     let getNotify = {
-      url: `${"notifications/user/" + this.$store.state.user.id}`,
+      url: `${"notifications/user/" + this.checkId}`,
       method: "get",
     };
 
     let getMsg = {
-      url: `${"chat/" + this.$store.state.user.id}`,
+      url: `${"chat/" + this.checkId}`,
       method: "get",
     };
 
