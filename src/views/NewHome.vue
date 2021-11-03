@@ -20,17 +20,10 @@ export default {
     MFooter
   },
   computed:{
-    ...mapState(['auth'])
+  
   },
   mounted(){
-    
-    if(!this.auth){
-      this.$store.commit('SHOW_LOGIN', true)
-    }
-    else if(this.auth){
-      this.$store.commit('SHOW_LOGIN', false)
-
-    }
+  
   }
 }
 </script>

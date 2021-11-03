@@ -181,7 +181,8 @@ export default {
 
     setInterval(() => {
       this.getNew();
-    }, 30000);
+      this.$store.dispatch('getNewDataUser', this.checkId)
+    }, 10000);
   },
   watch: {
     $route(to, from) {

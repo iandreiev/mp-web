@@ -91,7 +91,7 @@
               <div class="row">
                 <div class="user-meta-item">
                   <p class="text-accent-1">ID:</p>
-                  <p class="text-dark">{{ user.id }}</p>
+                  <p class="text-dark">{{ userid }}</p>
                 </div>
                 <div class="user-meta-item">
                   <p class="text-accent-1">{{ $t("userStatus") }}</p>
@@ -140,12 +140,12 @@
             <div class="user-finance-item">
               <div class="ic ic_fund"></div>
               <p class="text-accent-1">{{ $t("userTotalFunds") }}</p>
-              <p class="result">${{ investings[0].funds }}</p>
+              <p class="result">${{ user.funds }}</p>
             </div>
             <div class="user-finance-item">
               <div class="ic ic_total_share"></div>
               <p class="text-accent-1">{{ $t("userTotalShare") }}</p>
-              <p class="result">{{ investings[0].percents }} %</p>
+              <p class="result">{{ user.percents }} %</p>
             </div>
             <div class="user-finance-item">
               <div class="ic ic_incoming"></div>
@@ -241,8 +241,7 @@ export default {
   computed: {
     ...mapState(["user","investings", "stat", "withdraws", "last", "first"]),
     userid(){
-      return this.user.id === undefined ? this.user.userID : this.user.id === undefined ? this.user.userID : ''
-
+      return this.user.id === undefined ? this.user.userID : this.user.id === undefined ? this.user.userID : this.user.id
     }
   },
   watch: {

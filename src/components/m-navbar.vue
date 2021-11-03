@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <div class="navbar-mobile" :class="{ 'make-blue': showNav }">
       <div
         class="logo-blend"
@@ -10,7 +10,6 @@
         class="lang-selector"
         @click="isLangDrop = !isLangDrop"
         :class="{ unvisible: showNav }"
-       
       >
         <div class="lang-selector-item">
           <img
@@ -132,7 +131,11 @@
           <div class="col-12 navbar-item-wrapper">
             <div class="navbar-item">
               <div class="navbar-logo-default" @click="toHome"></div>
-              <div class="lang-selector" v-click-outside="cancelLang" @click="toggleLang()">
+              <div
+                class="lang-selector"
+                v-click-outside="cancelLang"
+                @click="toggleLang()"
+              >
                 <div class="lang-selector-item">
                   <img
                     :src="
@@ -206,34 +209,34 @@
               </ul>
             </div>
             <div class="navbar-item" v-if="auth == false">
- <div class="navbar-search-wrapper">
+              <div class="navbar-search-wrapper">
                 <div class="search-input-group">
-                                  <div class="btn-search ic_search"></div>
-                <input
-                  autocomplete="off"
-                  @keyup.delete="
-                    selected = {};
-                    keyword = '';
-                  "
-                  @keydown.down="moveDown"
-                  @keydown.up="moveUp"
-                  @keydown.enter="onSelect(filteredItems[highlight])"
-                  @input="onInput($event.target.value)"
-                  @blur="keyword = ''"
-                  type="text"
-                  name="search"
-                  id="search"
-                  :placeholder="$t('Search')"
-                  class="search"
-                  v-model="kword"
-                />
+                  <div class="btn-search ic_search"></div>
+                  <input
+                    autocomplete="off"
+                    @keyup.delete="
+                      selected = {};
+                      keyword = '';
+                    "
+                    @keydown.down="moveDown"
+                    @keydown.up="moveUp"
+                    @keydown.enter="onSelect(filteredItems[highlight])"
+                    @input="onInput($event.target.value)"
+                    @blur="keyword = ''"
+                    type="text"
+                    name="search"
+                    id="search"
+                    :placeholder="$t('Search')"
+                    class="search"
+                    v-model="kword"
+                  />
                 </div>
                 <div
                   v-show="kword && !selected.title"
                   class="navbar-search-wrapper-box"
                 >
                   <p v-show="filteredItems.length == 0" class="text-accent-1">
-                    {{$t('NotFoundSearch') + kword}}
+                    {{ $t("NotFoundSearch") + kword }}
                   </p>
 
                   <div
@@ -260,38 +263,37 @@
               <MButton :btnClass="`btn btn-regular`" v-on:click="openLogin()">{{
                 $t("LoginTitle")
               }}</MButton>
-              
             </div>
 
             <div class="navbar-item" v-else-if="auth == true">
               <div class="navbar-search-wrapper">
                 <div class="search-input-group">
-                                  <div class="btn-search ic_search"></div>
-                <input
-                  autocomplete="off"
-                  @keyup.delete="
-                    selected = {};
-                    keyword = '';
-                  "
-                  @keydown.down="moveDown"
-                  @keydown.up="moveUp"
-                  @keydown.enter="onSelect(filteredItems[highlight])"
-                  @input="onInput($event.target.value)"
-                  @blur="keyword = ''"
-                  type="text"
-                  name="search"
-                  id="search"
-                  :placeholder="$t('Search')"
-                  class="search"
-                  v-model="kword"
-                />
+                  <div class="btn-search ic_search"></div>
+                  <input
+                    autocomplete="off"
+                    @keyup.delete="
+                      selected = {};
+                      keyword = '';
+                    "
+                    @keydown.down="moveDown"
+                    @keydown.up="moveUp"
+                    @keydown.enter="onSelect(filteredItems[highlight])"
+                    @input="onInput($event.target.value)"
+                    @blur="keyword = ''"
+                    type="text"
+                    name="search"
+                    id="search"
+                    :placeholder="$t('Search')"
+                    class="search"
+                    v-model="kword"
+                  />
                 </div>
                 <div
                   v-show="kword && !selected.title"
                   class="navbar-search-wrapper-box"
                 >
                   <p v-show="filteredItems.length == 0" class="text-accent-1">
-                    {{$t('NotFoundSearch') + kword}}
+                    {{ $t("NotFoundSearch") + kword }}
                   </p>
 
                   <div
@@ -324,7 +326,7 @@
                         <p>1</p>
                         <div class="ic ic-usdt"></div>
                       </div>
-                      <p style="margin:0px 4px;">=</p>
+                      <p style="margin: 0px 4px">=</p>
                       <div class="icon-row">
                         <p>1</p>
                         <div class="ic ic_mnp"></div>
@@ -334,21 +336,27 @@
                   <div class="navbar-user-meta-course-item">
                     <p class="text-accent-1 item-title">{{ $t("balance") }}</p>
                     <div class="icon-row">
-                      <p>{{
-                        wallet.balance > 0
-                          ? wallet.balance
-                          : wallet.balance == null
-                          ? 0
-                          : ""
-                      }}</p>
+                      <p>
+                        {{
+                          wallet.balance > 0
+                            ? wallet.balance
+                            : wallet.balance == null
+                            ? 0
+                            : ""
+                        }}
+                      </p>
 
                       <div class="ic ic_mnp"></div>
                     </div>
                   </div>
                 </div>
-                <div class="navbar-user-meta" v-click-outside="cancelUserMenu" @click="toggleUserMenu()">
+                <div
+                  class="navbar-user-meta"
+                  v-click-outside="cancelUserMenu"
+                  @click="toggleUserMenu()"
+                >
                   <div class="counter" v-if="getListOfNotifications != 0">
-                    {{getListOfNotifications}}
+                    {{ getListOfNotifications }}
                   </div>
                   <div class="navbar-user-meta-avatar">
                     <img :src="user.avatar" alt="" />
@@ -401,10 +409,8 @@ import MButton from "../components/UI/m-button";
 import MLoginModal from "../components/m-login";
 import MRegisterModal from "../components/m-register";
 export default {
-  components: { MButton, MLoginModal, MRegisterModal,  },
-  directives:{
-    
-  },
+  components: { MButton, MLoginModal, MRegisterModal },
+  directives: {},
   data() {
     return {
       showModal: false,
@@ -484,17 +490,17 @@ export default {
     };
   },
   methods: {
-        cancelLang(){
-      this.$store.commit('SET_DROPDOWN_LANG', false)
+    cancelLang() {
+      this.$store.commit("SET_DROPDOWN_LANG", false);
     },
-    toggleLang(){
-      this.$store.commit('SET_DROPDOWN_LANG', true)
+    toggleLang() {
+      this.$store.commit("SET_DROPDOWN_LANG", true);
     },
-    toggleUserMenu(){
-      this.$store.commit('SET_DROPDOWN_USER', true)
+    toggleUserMenu() {
+      this.$store.commit("SET_DROPDOWN_USER", true);
     },
-    cancelUserMenu(){
-      this.$store.commit('SET_DROPDOWN_USER', false)
+    cancelUserMenu() {
+      this.$store.commit("SET_DROPDOWN_USER", false);
     },
     setLocale(locale) {
       this.$i18n.locale = locale;
@@ -513,7 +519,6 @@ export default {
     },
     openRegister() {
       this.$store.commit("SHOW_REGISTER", true);
-
     },
     openNav() {
       this.showNav = !this.showNav;
@@ -549,26 +554,31 @@ export default {
         this.highlight - 1 < 0
           ? this.filteredItems.length - 1
           : this.highlight - 1;
-
     },
     moveDown() {
       if (!this.kword) return;
       this.highlight = (this.highlight + 1) % this.filteredItems.length;
     },
-    getMessages(){
-          this.auth == true ? this.$store.dispatch('getUserMsgs', this.$store.state.user.id) : ''
+    getMessages() {
+      this.auth
+        ? this.$store.dispatch("getUserMsgs", this.$store.state.user.id)
+        : "";
     },
-        getMessagesCounter(){
-          this.auth == true ? this.$store.dispatch('getUserMsgsCount', this.$store.state.user.id) : ''
+    getMessagesCounter() {
+      this.auth
+        ? this.$store.dispatch("getUserMsgsCount", this.$store.state.user.id)
+        : "";
     },
-    getNots(){
-        this.auth == true ? this.$store.dispatch('getUserNots', this.$store.state.user.id) : console.log('login first')
-    }
+    getNots() {
+      this.auth
+        ? this.$store.dispatch("getUserNots", this.$store.state.user.id)
+        : console.log("login first");
+    },
   },
   computed: {
     ...mapState([
-      'messages',
-      'notifications',
+      "messages",
+      "notifications",
       "user",
       "auth",
       "wallet",
@@ -578,15 +588,15 @@ export default {
       "locale",
       "showLangs",
       "showUserNav",
-      "msg_counter"
+      "msg_counter",
     ]),
-    getListOfNotifications(){
-      let nots = this.notifications
-      let msg = this.msg_counter.result
-      let not = nots.filter(i=>i.type == 1).length
-      
+    getListOfNotifications() {
+      let nots = this.notifications;
+      let msg = this.msg_counter.result;
+      let not = nots.filter((i) => i.type == 1).length;
 
-      return msg + not
+
+      return msg + not;
     },
     filteredItems() {
       if (this.locale == "ru") {
@@ -618,8 +628,8 @@ export default {
       }
     },
   },
- async mounted() {
-    this.lang = JSON.parse(localStorage.locale)
+  async mounted() {
+    this.lang = JSON.parse(localStorage.locale);
     let options = {
       url: "projects",
       method: "get",
@@ -629,14 +639,12 @@ export default {
       this.dataList = res.data;
     });
 
-    if(this.user != {}){
-          await this.getNots()
-    await this.getMessages()
-    
-   await this.getMessagesCounter()
+    if (this.user != {}) {
+      await this.getNots();
+      await this.getMessages();
+
+      await this.getMessagesCounter();
     }
-
-
   },
 };
 </script>

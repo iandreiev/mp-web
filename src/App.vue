@@ -103,7 +103,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(["showLangs", "setup", "accessToken", "auth"]),
+    ...mapState(["showLangs", "auth", "setup", "accessToken", "auth"]),
+    
   },
   watch: {},
   mounted() {
@@ -116,6 +117,14 @@ export default {
       this.checkIfUserBanned()
       
     },30*1000)
+    }
+
+     if(!this.auth){
+      this.$store.commit('SHOW_LOGIN', true)
+    }
+    else if(this.auth){
+      this.$store.commit('SHOW_LOGIN', false)
+
     }
 },
 };

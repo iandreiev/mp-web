@@ -288,7 +288,7 @@
                     ></MInputFile>
                   </div>
 
-                  <div v-if="(user.isVerified = 1)" class="user-verify">
+                  <div v-if="(user.isVerified == 1)" class="user-verify">
                     <div class="ic ic_check"></div>
                     <p>{{ $t("verificationSuccess") }}</p>
                   </div>
@@ -557,7 +557,7 @@ export default {
             };
 
             let options = {
-              url: `users/setAvatar/${this.user.userID}`,
+              url: `users/setAvatar/${this.userid}`,
               method: "patch",
               data: body,
             };
@@ -565,7 +565,7 @@ export default {
             this.$http(options)
               .then((res) => {
                 let getUser = {
-                  url: `users/getUser/${this.user.userID}`,
+                  url: `users/getUser/${this.userid}`,
                   method: "get",
                 };
 
@@ -595,7 +595,7 @@ export default {
       };
 
       let options = {
-        url: `users/setPassport/${this.user.userID}`,
+        url: `users/setPassport/${this.userid}`,
         method: "patch",
         data: body,
       };
@@ -603,7 +603,7 @@ export default {
       this.$http(options)
         .then((res) => {
           let getUser = {
-            url: `users/getUser/${this.user.userID}`,
+            url: `users/getUser/${this.userid}`,
             method: "get",
           };
 
@@ -636,7 +636,7 @@ export default {
       };
 
       let options = {
-        url: `users/setPassword/${this.repeatPassword}/${this.user.userID}`,
+        url: `users/setPassword/${this.repeatPassword}/${this.userid}`,
         method: "patch",
         headers: {
           "Content-Type": "x-www-form-url-encoded",
@@ -648,7 +648,7 @@ export default {
           console.log(res);
 
           let getUser = {
-            url: `users/getUser/${this.user.userID}`,
+            url: `users/getUser/${this.userid}`,
             method: "get",
           };
 
@@ -685,7 +685,7 @@ export default {
       };
 
       let options = {
-        url: `users/${this.user.userID}`,
+        url: `users/${this.userid}`,
         method: "patch",
         data: form,
       };
@@ -693,7 +693,7 @@ export default {
       this.$http(options)
         .then((res) => {
           let getUser = {
-            url: `users/getUser/${this.user.userID}`,
+            url: `users/getUser/${this.userid}`,
             method: "get",
           };
 
@@ -776,7 +776,7 @@ export default {
         method: "post",
         data: {
           code: this.verifyCode,
-          id: this.user.userID,
+          id: this.userid,
         },
       };
 
@@ -792,7 +792,7 @@ export default {
             this.SMSTrue = true;
 
             let getUser = {
-              url: `users/getUser/${this.user.userID}`,
+              url: `users/getUser/${this.userid}`,
               method: "get",
             };
 
@@ -820,6 +820,9 @@ export default {
       "isEmailVerify",
       "isMobile",
     ]),
+        userid(){
+      return this.user.id === undefined ? this.user.userID : this.user.id === undefined ? this.user.userID : this.user.id
+    },
     isFieldEmpty(err) {
       if (this.verifyCode === "") {
         this.codeError.status = false;

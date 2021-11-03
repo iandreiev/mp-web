@@ -309,6 +309,7 @@ export default new Vuex.Store({
         })
     
     },
+
     getUser({ commit }) {
       Vue.axios.post(USER)
         .then(res => {
@@ -329,8 +330,19 @@ export default new Vuex.Store({
           throw new Error(`We get an error! ${err}`);
         })
     },
+    getNewDataUser({commit}, id){
+      let options = {
+        url: `users/${id}`,
+        method:'get'
+      }
 
+      Vue.axios(options)
+      .then(res => {
+        commit('SAVE_USER', res.data)
+      })
+    },
   },
+
   modules: {
   },
   plugins: [createPersistedState()]
