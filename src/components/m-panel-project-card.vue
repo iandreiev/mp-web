@@ -386,7 +386,7 @@ import getBTC from "../components/getBTC"
 import MModalBody from "../components/UI/modal/m-modal-body.vue";
 import MInputText from "../components/UI/form/m-input-text";
 import { mapState } from "vuex";
-const PAY_API = "https://api.staging.iserverbot.ru/v1/";
+const PAY_API = "https://sandbox.ps.grow.mybuilder.site/";
 import axios from "axios";
 
 export default {

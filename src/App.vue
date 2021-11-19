@@ -42,7 +42,7 @@ export default {
       });
     },
     getToken() {
-      const PAY_API = "https://api.staging.iserverbot.ru/v1/";
+      const PAY_API = "https://sandbox.ps.grow.mybuilder.site/";
       const REFRESH_TOKEN = this.setup[0].wallet;
 
       let options = {

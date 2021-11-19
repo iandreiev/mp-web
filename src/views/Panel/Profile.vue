@@ -140,24 +140,24 @@
             <div class="user-finance-item">
               <div class="ic ic_fund"></div>
               <p class="text-accent-1">{{ $t("userTotalFunds") }}</p>
-              <p class="result">${{ user.funds }}</p>
+              <p class="result">${{ user.invested }}</p>
             </div>
             <div class="user-finance-item">
               <div class="ic ic_total_share"></div>
               <p class="text-accent-1">{{ $t("userTotalShare") }}</p>
-              <p class="result">{{ user.percents }} %</p>
+              <p class="result">{{ (user.sharings / 100000) * 100}} %</p>
             </div>
             <div class="user-finance-item">
               <div class="ic ic_incoming"></div>
               <p class="text-accent-1">{{ $t("userAvgReturns") }}</p>
               <p class="result">
-                {{ (withdraws[0].returns / 100000) * 100 }} %
+                {{ (user.avgReturns / 100000) * 100 }} %
               </p>
             </div>
             <div class="user-finance-item">
               <div class="ic ic_total_return"></div>
               <p class="text-accent-1">{{ $t("userTotalReturns") }}</p>
-              <p class="result">{{ withdraws[0].returns }} MNP</p>
+              <p class="result">{{ user.totalReturns }} MNP</p>
             </div>
           </div>
         </div>
@@ -223,10 +223,6 @@ export default {
 
     this.$http(getProjectsStats).then((res) => {
       this.$store.commit("SAVE_STAT", res.data);
-    });
-
-    this.$http(getReturns).then((res) => {
-      this.$store.commit("SAVE_WITHDRAWS", res.data);
     });
 
     // if(this.user == []){

@@ -191,7 +191,7 @@ import MTabs from "../../components/UI/m-tabs";
 import MTabItem from "../../components/UI/m-tabs-item";
 import MButton from "../../components/UI/m-button";
 import { mapState } from 'vuex';
-const PAY_API = "https://api.staging.iserverbot.ru/v1/"
+const PAY_API = "https://sandbox.ps.grow.mybuilder.site/"
 import axios from "axios"
 export default {
    metaInfo() {

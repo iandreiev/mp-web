@@ -222,11 +222,13 @@ mounted(){
 
   console.log(getProjects)
 
-  this.$http(getProjects)
+  if(uID){
+      this.$http(getProjects)
   .then((res)=>{
     console.log('project res:', res)
     this.$store.commit("SAVE_USER_PROJECTS", res.data)
   })
+  }
 }
 }
 </script>

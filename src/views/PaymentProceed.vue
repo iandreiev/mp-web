@@ -96,7 +96,7 @@ import MSection from "../components/UI/m-section";
 import MFooter from "../components/m-footer";
 import MButton from "../components/UI/m-button";
 import MNavbar from "../components/m-navbar";
-const PAY_API = "https://api.staging.iserverbot.ru/v1/";
+const PAY_API = "https://sandbox.ps.grow.mybuilder.site/";
 import axios from "axios";
 import { jsPDF } from "jspdf";
 import logo from "@/assets/img/logo_reg.png";
